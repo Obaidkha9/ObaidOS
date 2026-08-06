@@ -66,3 +66,7 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          # First publish on a brand-new Pages site can sit in the build queue
+          # for a while; wait up to 30 min instead of the 10-min default.
+          timeout: 1800000

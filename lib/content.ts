@@ -342,6 +342,7 @@ export const PHOTOS: Photo[] = [
   { id: "arsenal-3", category: "Arsenal", src: asset("/photos/arsenal-3.webp"), aspect: "735/787", gradient: GRADS[4], label: "We all follow the Arsenal" },
   { id: "arsenal-6", category: "Arsenal", src: asset("/photos/arsenal-6.webp"), aspect: "735/900", gradient: GRADS[2], label: "Trophy parade" },
   { id: "arsenal-2", category: "Arsenal", src: asset("/photos/arsenal-2.webp"), aspect: "735/469", gradient: GRADS[6], label: "Victory bus" },
+  { id: "arsenal-heritage", category: "Arsenal", src: asset("/arsenal-heritage.webp"), aspect: "1672/941", gradient: GRADS[6], label: "Arsenal Heritage" },
 ];
 
 export const PHOTO_SECTIONS = ["Memories", "Arsenal"];

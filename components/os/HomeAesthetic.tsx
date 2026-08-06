@@ -709,9 +709,9 @@ export default function HomeAesthetic() {
           <div className="relative flex flex-col gap-4">
             <span aria-hidden className="absolute bottom-[7px] left-[3.5px] top-[7px] w-px bg-white/15" />
             {[
-              { years: "2025 — Present", company: "Ensylon" },
+              { years: "2025 — 2026", company: "Ensylon" },
               { years: "2024 — 2025", company: "Cognitive Stars" },
-              { years: "2022 — 2024", company: "TechCream" },
+              { years: "2022 — 2023", company: "TechCream" },
             ].map((e) => (
               <div key={e.company} className="flex gap-3">
                 <span className="relative z-10 mt-[3px] h-[7px] w-[7px] shrink-0 rounded-full bg-white/70 ring-2 ring-[#2d2d33]" />

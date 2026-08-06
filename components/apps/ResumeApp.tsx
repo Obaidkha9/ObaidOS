@@ -5,11 +5,12 @@ import SmoothScroll from "@/components/os/SmoothScroll";
 import { PROFILE } from "@/lib/content";
 import { asset } from "@/lib/asset";
 
-const FILE = "/CV_2026.pdf";
+const TITLE = "Obaid's Resume";
+const FILE = "/Obaids-Resume.pdf";
 // The PDF rendered to an image so it displays reliably in-app on every device
 // (mobile Safari won't render a PDF inside an iframe). The real PDF above is
 // still what the Download/Share buttons hand off.
-const PAGE = "/cv-2026.png";
+const PAGE = "/obaids-resume.png";
 
 export default function ResumeApp() {
   const [zoom, setZoom] = useState(1);
@@ -17,7 +18,7 @@ export default function ResumeApp() {
   const share = async () => {
     try {
       if (navigator.share) {
-        await navigator.share({ title: "CV_2026.pdf", url: asset(FILE) });
+        await navigator.share({ title: TITLE, url: asset(FILE) });
       } else {
         await navigator.clipboard.writeText(window.location.origin + asset(FILE));
       }
@@ -30,7 +31,7 @@ export default function ResumeApp() {
     <div className="flex h-full flex-col bg-[#141414] text-white">
       {/* toolbar */}
       <div className="glass flex items-center justify-between px-4 pb-2 pt-4">
-        <span className="text-sm font-semibold">CV_2026.pdf</span>
+        <span className="text-sm font-semibold">{TITLE}</span>
         <div className="flex items-center gap-3">
           <button
             aria-label="Zoom out"
@@ -66,7 +67,7 @@ export default function ResumeApp() {
       <div className="glass flex items-center justify-around px-6 pb-[max(env(safe-area-inset-bottom),16px)] pt-3">
         <a
           href={asset(FILE)}
-          download
+          download="Obaid's Resume.pdf"
           className="flex flex-col items-center gap-0.5 text-[#0f53fc]"
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">

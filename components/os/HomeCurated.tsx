@@ -95,12 +95,12 @@ function Currently() {
     <section style={{ gridArea: "curr" }} className={`flex flex-col justify-center gap-3.5 p-6 ${CARD}`}>
       <p className="text-[11px] font-semibold uppercase tracking-[0.14em] text-white/40">Currently</p>
       <div>
-        <h2 className="text-xl font-bold leading-tight text-white">UX Engineer III</h2>
+        <h2 className="text-xl font-bold leading-tight text-white">UX Engineer &amp; Product Designer</h2>
         <p className="mt-0.5 text-sm font-semibold text-white/60">
           at <span className="text-[#ff6a6a]">Ensylon</span>
         </p>
       </div>
-      <p className="text-[13px] font-medium text-white/85">Available for Full-Time &amp; Freelance</p>
+      <p className="text-[13px] font-medium text-white/85">Available for Full-Time &amp; Contract</p>
       <div className="text-[12px] leading-relaxed text-white/45">
         <p>4+ Years Experience · Jaipur, India</p>
         <p>Product Design • UX Engineering</p>

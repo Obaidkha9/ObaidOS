@@ -55,6 +55,9 @@ const APP_SIZE: Record<string, { w: number; h: number }> = {
   preview: { w: 860, h: 640 },
   projects: { w: 1240, h: 860 },
   music: { w: 900, h: 620 },
+  // portrait document — tall so more of the résumé page is visible (capped to
+  // the viewport height by the sizing logic below)
+  resume: { w: 820, h: 1000 },
   tictactoe: { w: 430, h: 520 },
   snake: { w: 470, h: 600 },
   flappybird: { w: 380, h: 610 },

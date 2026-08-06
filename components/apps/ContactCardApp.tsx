@@ -13,10 +13,8 @@ import { asset } from "@/lib/asset";
 /* ------------------------------------------------------------------ */
 
 const NAME = "Obaid Yusuf Zai";
-const ROLE = "UX Engineer III";
-const COMPANY = "Ensylon";
 const LOCATION = "Jaipur, India";
-const AVAILABILITY = "Open for Full-time & Freelance";
+const AVAILABILITY = "Open for Full-time & Contract";
 const EXPERIENCE = "4+ Years";
 const FOCUS = "Design Systems • AI Products • SaaS";
 
@@ -124,8 +122,7 @@ export default function ContactCardApp() {
             </button>
 
             <h1 className="mt-4 text-[22px] font-bold leading-tight tracking-tight">{NAME}</h1>
-            <p className="mt-1 text-[15px] font-medium text-white/80">{ROLE}</p>
-            <p className="mt-0.5 text-[13px]" style={{ color: SECONDARY }}>{COMPANY}</p>
+            <p className="mt-1 text-[15px] font-medium text-white/80">UX Engineer &amp; Product Designer</p>
 
             {/* quick links — unified squircle tiles, same footprint (Resume · LinkedIn · Naukri) */}
             <div className="mt-4 flex justify-center gap-3">
@@ -143,7 +140,7 @@ export default function ContactCardApp() {
           {/* ---- right: Apple Contacts info rows ---- */}
           <div className="min-w-0 flex-1">
             <div className="grid grid-cols-2 gap-2">
-              <Row span label="Current Role" value={<>{ROLE} <span style={{ color: SECONDARY }}>@</span> {COMPANY}</>} />
+              <Row span label="Current Status" value="Open to UX Engineer & Product Designer Roles" />
               <Row label="Location" value={LOCATION} />
               <Row label="Experience" value={EXPERIENCE} />
               <Row label="Availability" value={AVAILABILITY} />

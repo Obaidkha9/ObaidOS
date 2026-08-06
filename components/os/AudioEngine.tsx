@@ -28,11 +28,37 @@ function getAudio(): HTMLAudioElement | null {
   return w[AUDIO_KEY] ?? null;
 }
 
+/**
+ * Start playback as robustly as the browser allows.
+ * 1. Try to play with sound (works on localhost / sites the user has engaged
+ *    with, and after any gesture).
+ * 2. If that's blocked by the autoplay policy, play MUTED — muted autoplay is
+ *    always permitted, so the track is already rolling silently and just needs
+ *    to be unmuted (on unlock, or the first gesture) to become audible.
+ */
+function startAudio() {
+  const el = getAudio();
+  if (!el || !useOS.getState().isPlaying) return;
+  el.play().catch(() => {
+    el.muted = true;
+    el.play().catch(() => {});
+  });
+}
+
+/** Make the (possibly muted-primed) audio audible — call on unlock / gesture. */
+function unmuteAudio() {
+  const el = getAudio();
+  if (!el || !useOS.getState().isPlaying) return;
+  el.muted = false;
+  if (el.paused) el.play().catch(() => {});
+}
+
 export default function AudioEngine() {
   const setPlaylist = useOS((s) => s.setPlaylist);
   const playlist = useOS((s) => s.playlist);
   const trackIndex = useOS((s) => s.trackIndex);
   const isPlaying = useOS((s) => s.isPlaying);
+  const phase = useOS((s) => s.phase);
   const volume = useOS((s) => s.volume);
   const pendingSeek = useOS((s) => s.pendingSeek);
   const hasAudio = useOS((s) => s.hasAudio);
@@ -77,25 +103,23 @@ export default function AudioEngine() {
     }
   }, [playlist, trackIndex]);
 
-  // play / pause — guard the promise so autoplay rejection doesn't throw
+  // play / pause — start (with the muted-autoplay fallback) or pause
   useEffect(() => {
     const el = getAudio();
     if (!el) return;
-    if (isPlaying) {
-      el.play().catch(() => {
-        // autoplay blocked until a user gesture; the first gesture (below) starts it
-      });
-    } else {
-      el.pause();
-    }
+    if (isPlaying) startAudio();
+    else el.pause();
   }, [isPlaying, trackIndex, playlist]);
 
-  // if autoplay was blocked, start on the very first user gesture anywhere
+  // Unlock → home: make the audio audible. Covers ALL unlock paths (tap, scroll,
+  // and the automatic video-end unlock), unmuting whatever was primed silently.
   useEffect(() => {
-    const kick = () => {
-      const el = getAudio();
-      if (el && el.paused && useOS.getState().isPlaying) el.play().catch(() => {});
-    };
+    if (phase === "home") unmuteAudio();
+  }, [phase]);
+
+  // Any user gesture anywhere is a guaranteed moment we can start + unmute audio.
+  useEffect(() => {
+    const kick = () => unmuteAudio();
     const events = ["pointerdown", "keydown", "touchstart", "wheel"] as const;
     events.forEach((ev) => window.addEventListener(ev, kick, { passive: true }));
     return () => events.forEach((ev) => window.removeEventListener(ev, kick));

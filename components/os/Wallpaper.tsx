@@ -96,14 +96,10 @@ export default function Wallpaper({
   if (mode === "video") {
     return (
       <div className="absolute inset-0 overflow-hidden bg-black">
-        {/* portrait (720x1280) source rotated 90° left → fills as 16:9 widescreen */}
+        {/* landscape 854x480 clip; object-cover fills any viewport (incl. mobile
+            portrait — crops the sides) with no letterboxing */}
         <video
-          className="absolute left-1/2 top-1/2 object-cover"
-          style={{
-            width: "100vh",
-            height: "100vw",
-            transform: "translate(-50%, -50%) rotate(-90deg)",
-          }}
+          className="absolute inset-0 h-full w-full object-cover"
           poster={PHOTO_SRC}
           autoPlay
           muted

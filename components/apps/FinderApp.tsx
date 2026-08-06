@@ -114,19 +114,20 @@ function useTree(): Record<Section, Node[]> {
       },
       {
         id: "currently",
-        name: "currently.json",
+        name: "profile.ts",
         kind: "file",
-        ext: "json",
+        ext: "ts",
         modified: "Today, 9:41 AM",
         preview: (
-          <pre className="whitespace-pre-wrap font-mono text-[13px] leading-relaxed text-white/85">
-{`{
-  "role": "UX Engineer III",
-  "company": "Ensylon",
-  "location": "Jaipur, India",
-  "since": "2025",
-  "available": ["Full-time", "Freelance"]
-}`}
+          <pre className="whitespace-pre-wrap font-mono text-[13px] leading-relaxed text-[#d7dae0]">
+            <span style={{ color: "#c678dd" }}>export const</span>{" "}
+            <span style={{ color: "#56b6c2" }}>profile</span> = {"{"}{"\n"}
+            {"  "}role: <span style={{ color: "#98c379" }}>{'"UX Engineer"'}</span>,{"\n"}
+            {"  "}specialty: <span style={{ color: "#98c379" }}>{'"Product Design"'}</span>,{"\n"}
+            {"  "}experience: <span style={{ color: "#98c379" }}>{'"4+ Years"'}</span>,{"\n"}
+            {"  "}location: <span style={{ color: "#98c379" }}>{'"Jaipur, India"'}</span>,{"\n"}
+            {"  "}availableForWork: <span style={{ color: "#d19a66" }}>true</span>,{"\n"}
+            {"}"} <span style={{ color: "#c678dd" }}>as const</span>;
           </pre>
         ),
       },
@@ -441,7 +442,7 @@ function FolderIcon({ size = 46 }: { size?: number }) {
   );
 }
 function DocIcon({ ext = "", size = 44 }: { ext?: string; size?: number }) {
-  const tint: Record<string, string> = { md: "#0a84ff", txt: "#30d158", json: "#ffcc00", fig: "#a259ff", pdf: "#ff453a", png: "#64d2ff", mp4: "#ff375f", url: "#0a84ff", app: "#0a84ff" };
+  const tint: Record<string, string> = { md: "#0a84ff", txt: "#30d158", json: "#ffcc00", ts: "#3178c6", fig: "#a259ff", pdf: "#ff453a", png: "#ff9f0a", mp4: "#ff375f", url: "#0a84ff", app: "#0a84ff" };
   const c = tint[ext] ?? "#8e8e93";
   return (
     <svg width={size} height={size} viewBox="0 0 44 56" aria-hidden>

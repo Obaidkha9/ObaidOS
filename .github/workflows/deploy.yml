@@ -7,19 +7,17 @@ on:
   # ...and allow manual runs from the Actions tab
   workflow_dispatch:
 
-# Permissions the GITHUB_TOKEN needs to publish to Pages
+# Needs write access to push the built site to the gh-pages branch
 permissions:
-  contents: read
-  pages: write
-  id-token: write
+  contents: write
 
-# Allow one concurrent deployment; don't cancel an in-progress publish
+# Don't run two publishes at once
 concurrency:
   group: pages
   cancel-in-progress: false
 
 jobs:
-  build:
+  build-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -31,13 +29,6 @@ jobs:
           node-version: 22
           cache: npm
 
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-        with:
-          # Enable Pages (source: GitHub Actions) on first run via the job token,
-          # so no manual toggle in repo Settings is needed.
-          enablement: true
-
       - name: Install dependencies
         run: npm ci
 
@@ -48,25 +39,13 @@ jobs:
           # in next.config.ts and the `asset()` helper in lib/asset.ts.
           NEXT_PUBLIC_BASE_PATH: /ObaidOS
 
-      - name: Disable Jekyll (keep _next assets)
-        run: touch out/.nojekyll
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+      # Publish the built site to the `gh-pages` branch. GitHub Pages (source:
+      # "Deploy from a branch" -> gh-pages / root) then serves it asynchronously
+      # with no 10-minute action timeout. `.nojekyll` is added automatically so
+      # the `_next/` folder is served.
+      - name: Publish to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
         with:
-          path: ./out
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-        with:
-          # First publish on a brand-new Pages site can sit in the build queue
-          # for a while; wait up to 30 min instead of the 10-min default.
-          timeout: 1800000
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+          publish_branch: gh-pages

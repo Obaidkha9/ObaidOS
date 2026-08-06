@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { PROFILE } from "@/lib/content";
 import { useLaunch } from "@/lib/useLaunch";
 import { AppArt } from "@/components/icons/AppArt";
+import { asset } from "@/lib/asset";
 
 /* ------------------------------------------------------------------ */
 /*  Contact Card — native macOS Sonoma/Tahoe dark contact widget.      */
@@ -105,14 +106,14 @@ export default function ContactCardApp() {
           {/* ---- left: hero image + identity + quick links ---- */}
           <div className="flex shrink-0 flex-col items-center text-center sm:w-[200px]">
             <button
-              onClick={(e) => launch("preview", e.currentTarget, { context: NAME, payload: JSON.stringify({ src: "/profile.jpg", name: NAME }) })}
+              onClick={(e) => launch("preview", e.currentTarget, { context: NAME, payload: JSON.stringify({ src: asset("/profile.jpg"), name: NAME }) })}
               aria-label="View photo"
               className="h-24 w-24 overflow-hidden rounded-full bg-[#3a3a3c] ring-1 ring-white/10 transition active:scale-95"
             >
               {imgOk ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
-                  src="/profile.jpg"
+                  src={asset("/profile.jpg")}
                   alt={NAME}
                   className="h-full w-full object-cover"
                   onError={() => setImgOk(false)}
@@ -134,7 +135,7 @@ export default function ContactCardApp() {
               <SqTile label="LinkedIn" bg="#0a66c2" onClick={() => open(PROFILE.linkedin)}><GlyphIn /></SqTile>
               <SqTile label="Naukri" bg="#3359e5" onClick={() => open(NAUKRI)}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/icons/naukri-glyph.png" alt="" className="h-[62%] w-auto object-contain" draggable={false} />
+                <img src={asset("/icons/naukri-glyph.png")} alt="" className="h-[62%] w-auto object-contain" draggable={false} />
               </SqTile>
             </div>
           </div>

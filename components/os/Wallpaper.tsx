@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useOS } from "@/lib/store";
+import { asset } from "@/lib/asset";
 
 /* ------------------------------------------------------------------ */
 /*  macOS-style gradient wallpapers.                                   */
@@ -48,9 +49,9 @@ const PRESETS: Record<string, Preset> = {
 
 type Mode = keyof typeof PRESETS | "photo" | "video" | "tahoe";
 const ACTIVE: Mode = "photo";
-const PHOTO_SRC = "/arsenal-heritage.webp";
-const VIDEO_SRC = "/arsenal.mp4";
-const VIDEO_WEBM = "/arsenal.webm";
+const PHOTO_SRC = asset("/arsenal-heritage.webp");
+const VIDEO_SRC = asset("/arsenal.mp4");
+const VIDEO_WEBM = asset("/arsenal.webm");
 
 /** `mode` overrides the default wallpaper — the lock screen passes "video",
     the unlocked home screen passes "photo". */

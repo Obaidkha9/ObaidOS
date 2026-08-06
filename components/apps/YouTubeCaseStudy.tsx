@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import { motion, useInView, animate } from "framer-motion";
 import SmoothScroll from "@/components/os/SmoothScroll";
 import BackToTop from "@/components/os/BackToTop";
+import { asset } from "@/lib/asset";
 
 /* ------------------------------------------------------------------ */
 /*  Reimagining the YouTube Home Experience — premium case study page. */
@@ -179,7 +180,7 @@ export default function YouTubeCaseStudy(_props: { onBack: () => void }) {
           <Reveal delay={0.05}>
             <div className="relative overflow-hidden rounded-3xl ring-1" style={{ borderColor: BORD }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/yt-heatmap.webp" alt="YouTube home heatmap" className="block w-full" />
+              <img src={asset("/yt-heatmap.webp")} alt="YouTube home heatmap" className="block w-full" />
               {/* heat mapping overlay */}
               <div
                 className="pointer-events-none absolute inset-0"
@@ -325,7 +326,7 @@ export default function YouTubeCaseStudy(_props: { onBack: () => void }) {
           <Reveal delay={0.05}>
             <div className="overflow-hidden rounded-3xl ring-1" style={{ borderColor: BORD }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/yt-dashboard.webp" alt="Personalized recommendation dashboard" className="block w-full" />
+              <img src={asset("/yt-dashboard.webp")} alt="Personalized recommendation dashboard" className="block w-full" />
             </div>
           </Reveal>
         </Section>

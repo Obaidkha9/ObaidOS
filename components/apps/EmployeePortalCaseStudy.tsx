@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import { motion, useInView, animate } from "framer-motion";
 import SmoothScroll from "@/components/os/SmoothScroll";
 import BackToTop from "@/components/os/BackToTop";
+import { asset } from "@/lib/asset";
 
 /* ------------------------------------------------------------------ */
 /*  iConnect — Reimagining the Employee Experience Platform.           */
@@ -176,22 +177,22 @@ const AI_PROMPTS = ["How do I apply leave?", "Show my attendance", "Download my 
 const LIVE = "https://obaidkha9.github.io/Employee-Portal/#/";
 /* legacy iConnect portal screens (extracted from the old product docs) */
 const EP_LEGACY: { src: string; label: string }[] = [
-  { src: "/ep-legacy-dashboard.jpg", label: "Home · My Dashboard" },
-  { src: "/ep-legacy-information.jpg", label: "My Information" },
-  { src: "/ep-legacy-documents.jpg", label: "My Documents" },
-  { src: "/ep-legacy-attendance.jpg", label: "Attendance" },
-  { src: "/ep-legacy-leave.jpg", label: "Leave" },
+  { src: asset("/ep-legacy-dashboard.jpg"), label: "Home · My Dashboard" },
+  { src: asset("/ep-legacy-information.jpg"), label: "My Information" },
+  { src: asset("/ep-legacy-documents.jpg"), label: "My Documents" },
+  { src: asset("/ep-legacy-attendance.jpg"), label: "Attendance" },
+  { src: asset("/ep-legacy-leave.jpg"), label: "Leave" },
 ];
 /* real screens captured from the live product */
 const EP_SHOTS: { src: string; label: string }[] = [
-  { src: "/ep-dashboard.jpg", label: "Dashboard" },
-  { src: "/ep-attendance.jpg", label: "My Attendance" },
-  { src: "/ep-service-requests.jpg", label: "Service Requests" },
-  { src: "/ep-financial.jpg", label: "Financial Details" },
-  { src: "/ep-salary.jpg", label: "Salary Slips" },
-  { src: "/ep-reimbursements.jpg", label: "Reimbursements" },
-  { src: "/ep-approvals.jpg", label: "My Approvals" },
-  { src: "/ep-conveyance.jpg", label: "Conveyance Allowance" },
+  { src: asset("/ep-dashboard.jpg"), label: "Dashboard" },
+  { src: asset("/ep-attendance.jpg"), label: "My Attendance" },
+  { src: asset("/ep-service-requests.jpg"), label: "Service Requests" },
+  { src: asset("/ep-financial.jpg"), label: "Financial Details" },
+  { src: asset("/ep-salary.jpg"), label: "Salary Slips" },
+  { src: asset("/ep-reimbursements.jpg"), label: "Reimbursements" },
+  { src: asset("/ep-approvals.jpg"), label: "My Approvals" },
+  { src: asset("/ep-conveyance.jpg"), label: "Conveyance Allowance" },
 ];
 
 const IMPACT = [
@@ -255,7 +256,7 @@ export default function EmployeePortalCaseStudy({ onBack: _onBack }: { onBack: (
           <Reveal delay={0.12} className="mt-12">
             <BrowserFrame url="obaidkha9.github.io/Employee-Portal">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/ep-dashboard.jpg" alt="Employee Portal — live dashboard" loading="lazy" className="block h-auto w-full" />
+              <img src={asset("/ep-dashboard.jpg")} alt="Employee Portal — live dashboard" loading="lazy" className="block h-auto w-full" />
             </BrowserFrame>
           </Reveal>
           <Reveal delay={0.05} className="mt-8">
@@ -410,7 +411,7 @@ export default function EmployeePortalCaseStudy({ onBack: _onBack }: { onBack: (
             <p className="mb-6 max-w-xl text-[15px]" style={{ color: SUB }}>Drag the handle to compare the legacy portal with the redesign.</p>
           </Reveal>
           <Reveal delay={0.1}>
-            <BeforeAfter before="/ep-old-dashboard.jpg" after="/ep-new-dashboard.jpg" beforeLabel="Legacy" afterLabel="Redesigned" />
+            <BeforeAfter before={asset("/ep-old-dashboard.jpg")} after={asset("/ep-new-dashboard.jpg")} beforeLabel="Legacy" afterLabel="Redesigned" />
           </Reveal>
           <div className="mt-8 grid gap-5 lg:grid-cols-2">
             <Reveal>

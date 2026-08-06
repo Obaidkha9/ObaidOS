@@ -12,22 +12,23 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useOS } from "@/lib/store";
 import { useLaunch } from "@/lib/useLaunch";
 import { formatTime } from "@/lib/utils";
+import { asset } from "@/lib/asset";
 /* Workspace widget — the productivity tools used to design, build & ship. */
 const TOOLS: { name: string; sub: string; href: string; icon: string; invert?: boolean }[] = [
   // row 1
-  { name: "Figma", sub: "Design Systems", href: "https://figma.com", icon: "/icons/figma.webp" },
-  { name: "ChatGPT", sub: "Research & Ideation", href: "https://chatgpt.com", icon: "/icons/chatgpt.webp", invert: true },
-  { name: "Claude Code", sub: "AI Development", href: "https://claude.com/claude-code", icon: "/icons/claude.webp" },
-  { name: "Pinterest", sub: "Inspiration", href: "https://pinterest.com", icon: "/icons/pinterest.webp" },
-  { name: "GitHub", sub: "Version Control", href: "https://github.com", icon: "/icons/github.webp", invert: true },
-  { name: "VS Code", sub: "Code Editor", href: "https://code.visualstudio.com", icon: "/icons/vscode.webp" },
+  { name: "Figma", sub: "Design Systems", href: "https://figma.com", icon: asset("/icons/figma.webp") },
+  { name: "ChatGPT", sub: "Research & Ideation", href: "https://chatgpt.com", icon: asset("/icons/chatgpt.webp"), invert: true },
+  { name: "Claude Code", sub: "AI Development", href: "https://claude.com/claude-code", icon: asset("/icons/claude.webp") },
+  { name: "Pinterest", sub: "Inspiration", href: "https://pinterest.com", icon: asset("/icons/pinterest.webp") },
+  { name: "GitHub", sub: "Version Control", href: "https://github.com", icon: asset("/icons/github.webp"), invert: true },
+  { name: "VS Code", sub: "Code Editor", href: "https://code.visualstudio.com", icon: asset("/icons/vscode.webp") },
   // row 2
-  { name: "Framer", sub: "Prototyping", href: "https://framer.com", icon: "/icons/framer.webp" },
-  { name: "Adobe XD", sub: "Legacy Projects", href: "https://www.adobe.com/products/xd.html", icon: "/icons/adobexd.webp" },
-  { name: "Photoshop", sub: "Photo Editing", href: "https://www.adobe.com/products/photoshop.html", icon: "/icons/photoshop.webp" },
-  { name: "Illustrator", sub: "Vector Art", href: "https://www.adobe.com/products/illustrator.html", icon: "/icons/illustrator.webp" },
-  { name: "Power BI", sub: "Analytics", href: "https://powerbi.microsoft.com", icon: "/icons/powerbi.webp" },
-  { name: "WordPress", sub: "CMS", href: "https://wordpress.org", icon: "/icons/wordpress.webp" },
+  { name: "Framer", sub: "Prototyping", href: "https://framer.com", icon: asset("/icons/framer.webp") },
+  { name: "Adobe XD", sub: "Legacy Projects", href: "https://www.adobe.com/products/xd.html", icon: asset("/icons/adobexd.webp") },
+  { name: "Photoshop", sub: "Photo Editing", href: "https://www.adobe.com/products/photoshop.html", icon: asset("/icons/photoshop.webp") },
+  { name: "Illustrator", sub: "Vector Art", href: "https://www.adobe.com/products/illustrator.html", icon: asset("/icons/illustrator.webp") },
+  { name: "Power BI", sub: "Analytics", href: "https://powerbi.microsoft.com", icon: asset("/icons/powerbi.webp") },
+  { name: "WordPress", sub: "CMS", href: "https://wordpress.org", icon: asset("/icons/wordpress.webp") },
 ];
 
 function Workspace() {
@@ -63,11 +64,11 @@ function Workspace() {
 const rnd = (n: number) => Math.round(n * 100) / 100;
 
 const FEATURED: { id: string; name: string; sub: string; color: string; img: string; pos?: string; contain?: boolean; light?: boolean; noLabel?: boolean; stacked?: boolean; href?: string }[] = [
-  { id: "design-system", name: "Design System", sub: "Scalable Design System", color: "#34c759", img: "/designsystem.webp" },
-  { id: "youtube-redesign", name: "YouTube Redesign", sub: "A concept study", color: "#ff3b30", img: "/youtube.webp" },
-  { id: "employee-portal", name: "Employee Portal", sub: "", color: "#B7A8E6", img: "/employee-portal.webp", stacked: true },
-  { id: "carwaalah", name: "Carwaalah", sub: "Car rentals, redesigned", color: "#FFC83D", img: "/carwaalah-card.jpg", pos: "center", contain: true, light: true, noLabel: true },
-  { id: "ask-ai", name: "ASK AI", sub: "AI-Powered Assistant", color: "#3b82f6", img: "/askai.webp", pos: "center" },
+  { id: "design-system", name: "Design System", sub: "Scalable Design System", color: "#34c759", img: asset("/designsystem.webp") },
+  { id: "youtube-redesign", name: "YouTube Redesign", sub: "A concept study", color: "#ff3b30", img: asset("/youtube.webp") },
+  { id: "employee-portal", name: "Employee Portal", sub: "", color: "#B7A8E6", img: asset("/employee-portal.webp"), stacked: true },
+  { id: "carwaalah", name: "Carwaalah", sub: "Car rentals, redesigned", color: "#FFC83D", img: asset("/carwaalah-card.jpg"), pos: "center", contain: true, light: true, noLabel: true },
+  { id: "ask-ai", name: "ASK AI", sub: "AI-Powered Assistant", color: "#3b82f6", img: asset("/askai.webp"), pos: "center" },
 ];
 
 function Tile({
@@ -422,11 +423,11 @@ function ArsenalCard() {
     >
       {/* sunburst backdrop */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src="/arsenal-rays.webp" alt="" className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.05]" />
+      <img src={asset("/arsenal-rays.webp")} alt="" className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.05]" />
       {/* characters (text stripped, bg made transparent), centred in the card */}
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
-        src="/arsenal-cut.webp"
+        src={asset("/arsenal-cut.webp")}
         alt="Arsenal"
         className="absolute inset-0 h-full w-full object-contain px-4 py-8 transition-transform duration-300 group-hover:scale-[1.05]"
       />
@@ -679,8 +680,8 @@ export default function HomeAesthetic() {
       <ArsenalCard />
 
       {/* games — thumbnail cards that open the playable window */}
-      <GameCard area="ttt" id="tictactoe" name="Tic-Tac-Toe" img="/tictactoe.webp" />
-      <GameCard area="snake" id="snake" name="Snake Chase" img="/snake.webp" />
+      <GameCard area="ttt" id="tictactoe" name="Tic-Tac-Toe" img={asset("/tictactoe.webp")} />
+      <GameCard area="snake" id="snake" name="Snake Chase" img={asset("/snake.webp")} />
 
       {/* Why Hire Me — value proposition card */}
       <motion.div

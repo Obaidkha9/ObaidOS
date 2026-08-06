@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import { motion, useInView, animate } from "framer-motion";
 import SmoothScroll from "@/components/os/SmoothScroll";
 import BackToTop from "@/components/os/BackToTop";
+import { asset } from "@/lib/asset";
 
 /* ------------------------------------------------------------------ */
 /*  Carwaalah — faster, simpler, more trustworthy car rentals.        */
@@ -296,9 +297,9 @@ export default function CarwaalahCaseStudy({ onBack: _onBack }: { onBack: () => 
           <Reveal><Kicker n="06" label="Design Evolution" /></Reveal>
           <div className="grid gap-4 lg:grid-cols-3">
             {[
-              { src: "/cw-evo-wireframe.jpg", label: "Wireframe" },
-              { src: "/cw-evo-hifi.jpg", label: "High-Fidelity" },
-              { src: "/cw-evo-final.jpg", label: "Final Design" },
+              { src: asset("/cw-evo-wireframe.jpg"), label: "Wireframe" },
+              { src: asset("/cw-evo-hifi.jpg"), label: "High-Fidelity" },
+              { src: asset("/cw-evo-final.jpg"), label: "Final Design" },
             ].map((s, i) => (
               <Reveal key={s.src} delay={i * 0.08}>
                 <motion.div whileHover={{ y: -6 }}>
@@ -414,7 +415,7 @@ export default function CarwaalahCaseStudy({ onBack: _onBack }: { onBack: () => 
           <Reveal delay={0.1}>
             <div className="mx-auto max-w-4xl overflow-hidden rounded-2xl ring-1 ring-white/10">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/cw-final.jpg" alt="Carwaalah — final landing page" loading="lazy" className="block h-auto w-full" />
+              <img src={asset("/cw-final.jpg")} alt="Carwaalah — final landing page" loading="lazy" className="block h-auto w-full" />
             </div>
           </Reveal>
         </Section>

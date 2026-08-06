@@ -1,4 +1,5 @@
 import type { Track } from "./store";
+import { asset } from "@/lib/asset";
 
 /* ------------------------------------------------------------------ */
 /*  All portfolio content lives here — edit freely.                    */
@@ -21,14 +22,14 @@ export const PROFILE = {
    /music/covers (fetched once from iTunes), so nothing is re-fetched at runtime;
    the gradients are fallbacks. */
 export const PLAYLIST: Track[] = [
-  { id: "billie-jean", title: "Billie Jean", artist: "Michael Jackson", src: "/music/billie-jean.mp3", cover: "/music/covers/billie-jean.jpg", artwork: "linear-gradient(135deg,#e52d27,#b31217)" },
-  { id: "uptown-funk", title: "Uptown Funk", artist: "Mark Ronson ft. Bruno Mars", src: "/music/uptown-funk.mp3", cover: "/music/covers/uptown-funk.jpg", artwork: "linear-gradient(135deg,#f7971e,#ffd200)" },
-  { id: "beat-it", title: "Beat It", artist: "Michael Jackson", src: "/music/beat-it.mp3", cover: "/music/covers/beat-it.jpg", artwork: "linear-gradient(135deg,#141e30,#243b55)" },
-  { id: "stay", title: "Stay", artist: "The Kid LAROI & Justin Bieber", src: "/music/stay.mp3", cover: "/music/covers/stay.jpg", artwork: "linear-gradient(135deg,#2fae8f,#0b3d2e)" },
-  { id: "blinding-lights", title: "Blinding Lights", artist: "The Weeknd", src: "/music/blinding-lights.mp3", cover: "/music/covers/blinding-lights.jpg", artwork: "linear-gradient(135deg,#ee0979,#ff6a00)" },
-  { id: "starboy", title: "Starboy", artist: "The Weeknd ft. Daft Punk", src: "/music/starboy.mp3", cover: "/music/covers/starboy.jpg", artwork: "linear-gradient(135deg,#e11d2a,#7a0b12)" },
-  { id: "sunflower", title: "Sunflower", artist: "Post Malone & Swae Lee", src: "/music/sunflower.mp3", cover: "/music/covers/sunflower.jpg", artwork: "linear-gradient(135deg,#e2352b,#1a1a1a)" },
-  { id: "gods-plan", title: "God's Plan", artist: "Drake", src: "/music/gods-plan.mp3", cover: "/music/covers/gods-plan.jpg", artwork: "linear-gradient(135deg,#3a3a3a,#0d0d0d)" },
+  { id: "billie-jean", title: "Billie Jean", artist: "Michael Jackson", src: "/music/billie-jean.mp3", cover: asset("/music/covers/billie-jean.jpg"), artwork: "linear-gradient(135deg,#e52d27,#b31217)" },
+  { id: "uptown-funk", title: "Uptown Funk", artist: "Mark Ronson ft. Bruno Mars", src: "/music/uptown-funk.mp3", cover: asset("/music/covers/uptown-funk.jpg"), artwork: "linear-gradient(135deg,#f7971e,#ffd200)" },
+  { id: "beat-it", title: "Beat It", artist: "Michael Jackson", src: "/music/beat-it.mp3", cover: asset("/music/covers/beat-it.jpg"), artwork: "linear-gradient(135deg,#141e30,#243b55)" },
+  { id: "stay", title: "Stay", artist: "The Kid LAROI & Justin Bieber", src: "/music/stay.mp3", cover: asset("/music/covers/stay.jpg"), artwork: "linear-gradient(135deg,#2fae8f,#0b3d2e)" },
+  { id: "blinding-lights", title: "Blinding Lights", artist: "The Weeknd", src: "/music/blinding-lights.mp3", cover: asset("/music/covers/blinding-lights.jpg"), artwork: "linear-gradient(135deg,#ee0979,#ff6a00)" },
+  { id: "starboy", title: "Starboy", artist: "The Weeknd ft. Daft Punk", src: "/music/starboy.mp3", cover: asset("/music/covers/starboy.jpg"), artwork: "linear-gradient(135deg,#e11d2a,#7a0b12)" },
+  { id: "sunflower", title: "Sunflower", artist: "Post Malone & Swae Lee", src: "/music/sunflower.mp3", cover: asset("/music/covers/sunflower.jpg"), artwork: "linear-gradient(135deg,#e2352b,#1a1a1a)" },
+  { id: "gods-plan", title: "God's Plan", artist: "Drake", src: "/music/gods-plan.mp3", cover: asset("/music/covers/gods-plan.jpg"), artwork: "linear-gradient(135deg,#3a3a3a,#0d0d0d)" },
 ];
 
 /* ---- About (Notes app) -------------------------------------------- */
@@ -312,35 +313,35 @@ export const PHOTO_CATEGORIES = [
 export const PHOTOS: Photo[] = [
   // Scattered order with user-requested swaps (mem-22↔14, mem-3↔6, mem-17↔7)
   // and mem-21 removed.
-  { id: "mem-22", category: "Memories", src: "/photos/mem-22.jpg", aspect: "1400/933", gradient: GRADS[6], label: "Dec 2025" },
-  { id: "mem-1", category: "Memories", src: "/photos/mem-1.webp", aspect: "933/1400", gradient: GRADS[1], label: "Memory" },
-  { id: "mem-9", category: "Memories", src: "/photos/mem-9.webp", aspect: "1400/1050", gradient: GRADS[1], label: "Dec 2024" },
-  { id: "mem-6", category: "Memories", src: "/photos/mem-6.webp", aspect: "1400/1050", gradient: GRADS[6], label: "Oct 2024" },
-  { id: "mem-12", category: "Memories", src: "/photos/mem-12.webp", aspect: "1400/1050", gradient: GRADS[4], label: "Jan 2025" },
-  { id: "mem-15", category: "Memories", src: "/photos/mem-15.webp", aspect: "1050/1400", gradient: GRADS[7], label: "Mar 2025" },
-  { id: "mem-5", category: "Memories", src: "/photos/mem-5.webp", aspect: "1400/1050", gradient: GRADS[5], label: "Sep 2024" },
-  { id: "mem-8", category: "Memories", src: "/photos/mem-8.webp", aspect: "1400/1050", gradient: GRADS[0], label: "Nov 2024" },
-  { id: "mem-10", category: "Memories", src: "/photos/mem-10.webp", aspect: "1400/1050", gradient: GRADS[2], label: "Dec 2024" },
-  { id: "mem-17", category: "Memories", src: "/photos/mem-17.webp", aspect: "1050/1400", gradient: GRADS[1], label: "Mar 2025" },
-  { id: "mem-13", category: "Memories", src: "/photos/mem-13.webp", aspect: "1400/1050", gradient: GRADS[5], label: "Jan 2025" },
-  { id: "mem-16", category: "Memories", src: "/photos/mem-16.webp", aspect: "1400/1050", gradient: GRADS[0], label: "Mar 2025" },
-  { id: "mem-19", category: "Memories", src: "/photos/mem-19.webp", aspect: "1400/1050", gradient: GRADS[3], label: "May 2025" },
-  { id: "mem-11", category: "Memories", src: "/photos/mem-11.webp", aspect: "1050/1400", gradient: GRADS[3], label: "Dec 2024" },
-  { id: "mem-2", category: "Memories", src: "/photos/mem-2.webp", aspect: "1400/933", gradient: GRADS[2], label: "Memory" },
-  { id: "mem-18", category: "Memories", src: "/photos/mem-18.webp", aspect: "1400/1050", gradient: GRADS[2], label: "Mar 2025" },
-  { id: "mem-3", category: "Memories", src: "/photos/mem-3.webp", aspect: "1400/1050", gradient: GRADS[3], label: "May 2025" },
-  { id: "mem-20", category: "Memories", src: "/photos/mem-20.webp", aspect: "1050/1400", gradient: GRADS[4], label: "May 2025" },
-  { id: "mem-4", category: "Memories", src: "/photos/mem-4.webp", aspect: "1400/1050", gradient: GRADS[4], label: "Memory" },
-  { id: "mem-14", category: "Memories", src: "/photos/mem-14.webp", aspect: "1400/1050", gradient: GRADS[6], label: "Mar 2025" },
-  { id: "mem-7", category: "Memories", src: "/photos/mem-7.webp", aspect: "1050/1400", gradient: GRADS[7], label: "Oct 2024" },
-  { id: "arsenal-1", category: "Arsenal", src: "/photos/arsenal-1.webp", aspect: "736/981", gradient: GRADS[2], label: "Champions 25/26 kit" },
-  { id: "arsenal-8", category: "Arsenal", src: "/photos/arsenal-8.webp", aspect: "1500/693", gradient: GRADS[6], label: "Champions of England" },
-  { id: "arsenal-5", category: "Arsenal", src: "/photos/arsenal-5.webp", aspect: "735/919", gradient: GRADS[7], label: "It All Worked Out" },
-  { id: "arsenal-4", category: "Arsenal", src: "/photos/arsenal-4.webp", aspect: "735/490", gradient: GRADS[6], label: "Lifting the title" },
-  { id: "arsenal-7", category: "Arsenal", src: "/photos/arsenal-7.webp", aspect: "736/1105", gradient: GRADS[3], label: "Gabriel Magalhães" },
-  { id: "arsenal-3", category: "Arsenal", src: "/photos/arsenal-3.webp", aspect: "735/787", gradient: GRADS[4], label: "We all follow the Arsenal" },
-  { id: "arsenal-6", category: "Arsenal", src: "/photos/arsenal-6.webp", aspect: "735/900", gradient: GRADS[2], label: "Trophy parade" },
-  { id: "arsenal-2", category: "Arsenal", src: "/photos/arsenal-2.webp", aspect: "735/469", gradient: GRADS[6], label: "Victory bus" },
+  { id: "mem-22", category: "Memories", src: asset("/photos/mem-22.jpg"), aspect: "1400/933", gradient: GRADS[6], label: "Dec 2025" },
+  { id: "mem-1", category: "Memories", src: asset("/photos/mem-1.webp"), aspect: "933/1400", gradient: GRADS[1], label: "Memory" },
+  { id: "mem-9", category: "Memories", src: asset("/photos/mem-9.webp"), aspect: "1400/1050", gradient: GRADS[1], label: "Dec 2024" },
+  { id: "mem-6", category: "Memories", src: asset("/photos/mem-6.webp"), aspect: "1400/1050", gradient: GRADS[6], label: "Oct 2024" },
+  { id: "mem-12", category: "Memories", src: asset("/photos/mem-12.webp"), aspect: "1400/1050", gradient: GRADS[4], label: "Jan 2025" },
+  { id: "mem-15", category: "Memories", src: asset("/photos/mem-15.webp"), aspect: "1050/1400", gradient: GRADS[7], label: "Mar 2025" },
+  { id: "mem-5", category: "Memories", src: asset("/photos/mem-5.webp"), aspect: "1400/1050", gradient: GRADS[5], label: "Sep 2024" },
+  { id: "mem-8", category: "Memories", src: asset("/photos/mem-8.webp"), aspect: "1400/1050", gradient: GRADS[0], label: "Nov 2024" },
+  { id: "mem-10", category: "Memories", src: asset("/photos/mem-10.webp"), aspect: "1400/1050", gradient: GRADS[2], label: "Dec 2024" },
+  { id: "mem-17", category: "Memories", src: asset("/photos/mem-17.webp"), aspect: "1050/1400", gradient: GRADS[1], label: "Mar 2025" },
+  { id: "mem-13", category: "Memories", src: asset("/photos/mem-13.webp"), aspect: "1400/1050", gradient: GRADS[5], label: "Jan 2025" },
+  { id: "mem-16", category: "Memories", src: asset("/photos/mem-16.webp"), aspect: "1400/1050", gradient: GRADS[0], label: "Mar 2025" },
+  { id: "mem-19", category: "Memories", src: asset("/photos/mem-19.webp"), aspect: "1400/1050", gradient: GRADS[3], label: "May 2025" },
+  { id: "mem-11", category: "Memories", src: asset("/photos/mem-11.webp"), aspect: "1050/1400", gradient: GRADS[3], label: "Dec 2024" },
+  { id: "mem-2", category: "Memories", src: asset("/photos/mem-2.webp"), aspect: "1400/933", gradient: GRADS[2], label: "Memory" },
+  { id: "mem-18", category: "Memories", src: asset("/photos/mem-18.webp"), aspect: "1400/1050", gradient: GRADS[2], label: "Mar 2025" },
+  { id: "mem-3", category: "Memories", src: asset("/photos/mem-3.webp"), aspect: "1400/1050", gradient: GRADS[3], label: "May 2025" },
+  { id: "mem-20", category: "Memories", src: asset("/photos/mem-20.webp"), aspect: "1050/1400", gradient: GRADS[4], label: "May 2025" },
+  { id: "mem-4", category: "Memories", src: asset("/photos/mem-4.webp"), aspect: "1400/1050", gradient: GRADS[4], label: "Memory" },
+  { id: "mem-14", category: "Memories", src: asset("/photos/mem-14.webp"), aspect: "1400/1050", gradient: GRADS[6], label: "Mar 2025" },
+  { id: "mem-7", category: "Memories", src: asset("/photos/mem-7.webp"), aspect: "1050/1400", gradient: GRADS[7], label: "Oct 2024" },
+  { id: "arsenal-1", category: "Arsenal", src: asset("/photos/arsenal-1.webp"), aspect: "736/981", gradient: GRADS[2], label: "Champions 25/26 kit" },
+  { id: "arsenal-8", category: "Arsenal", src: asset("/photos/arsenal-8.webp"), aspect: "1500/693", gradient: GRADS[6], label: "Champions of England" },
+  { id: "arsenal-5", category: "Arsenal", src: asset("/photos/arsenal-5.webp"), aspect: "735/919", gradient: GRADS[7], label: "It All Worked Out" },
+  { id: "arsenal-4", category: "Arsenal", src: asset("/photos/arsenal-4.webp"), aspect: "735/490", gradient: GRADS[6], label: "Lifting the title" },
+  { id: "arsenal-7", category: "Arsenal", src: asset("/photos/arsenal-7.webp"), aspect: "736/1105", gradient: GRADS[3], label: "Gabriel Magalhães" },
+  { id: "arsenal-3", category: "Arsenal", src: asset("/photos/arsenal-3.webp"), aspect: "735/787", gradient: GRADS[4], label: "We all follow the Arsenal" },
+  { id: "arsenal-6", category: "Arsenal", src: asset("/photos/arsenal-6.webp"), aspect: "735/900", gradient: GRADS[2], label: "Trophy parade" },
+  { id: "arsenal-2", category: "Arsenal", src: asset("/photos/arsenal-2.webp"), aspect: "735/469", gradient: GRADS[6], label: "Victory bus" },
 ];
 
 export const PHOTO_SECTIONS = ["Memories", "Arsenal"];

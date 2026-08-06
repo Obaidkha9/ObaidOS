@@ -13,20 +13,21 @@ import AppIcon from "./AppIcon";
 import { HOME_APPS, getApp, type AppMeta } from "@/lib/apps";
 import { PROJECTS } from "@/lib/content";
 import { useOS, type WinState } from "@/lib/store";
+import { asset } from "@/lib/asset";
 
 /* cover art used as the minimized "page" thumbnail for each case study */
 const PROJECT_COVER: Record<string, string> = {
-  "employee-portal": "/employee-portal.webp",
-  "ask-ai": "/askai.webp",
-  carwaalah: "/carwaalah-card.jpg",
-  "youtube-redesign": "/youtube.webp",
-  "design-system": "/designsystem.webp",
+  "employee-portal": asset("/employee-portal.webp"),
+  "ask-ai": asset("/askai.webp"),
+  carwaalah: asset("/carwaalah-card.jpg"),
+  "youtube-redesign": asset("/youtube.webp"),
+  "design-system": asset("/designsystem.webp"),
 };
 
 /* cover art for windows that don't have a dock icon (e.g. games) */
 const WINDOW_THUMB: Record<string, string> = {
-  snake: "/snake.webp",
-  tictactoe: "/tictactoe.webp",
+  snake: asset("/snake.webp"),
+  tictactoe: asset("/tictactoe.webp"),
 };
 
 function minimizedThumb(win: WinState) {
@@ -46,7 +47,7 @@ function minimizedThumb(win: WinState) {
   if (WINDOW_THUMB[win.appId]) {
     return { src: WINDOW_THUMB[win.appId], label: win.context ?? app?.name ?? "Window", cover: true };
   }
-  return { src: `/icons/${win.appId}.png`, label: win.context ?? app?.name ?? "Window", cover: false };
+  return { src: asset(`/icons/${win.appId}.png`), label: win.context ?? app?.name ?? "Window", cover: false };
 }
 
 /* Custom dock-only icons (drawn via AppArt), routed to existing apps. */

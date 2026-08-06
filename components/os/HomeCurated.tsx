@@ -10,6 +10,7 @@ import { useOS } from "@/lib/store";
 import { useLaunch } from "@/lib/useLaunch";
 import { formatTime } from "@/lib/utils";
 import { PROFILE, PROJECTS } from "@/lib/content";
+import { asset } from "@/lib/asset";
 
 /* ------------------------------------------------------------------ */
 /*  Page 4 — curated "Apple-designed portfolio" dashboard.             */
@@ -66,8 +67,7 @@ function Identity() {
         className="absolute inset-0 bg-cover bg-center"
         style={{
           backgroundColor: "#1a1416",
-          backgroundImage:
-            "linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,0.85) 100%), url('/profile.jpg')",
+          backgroundImage: `linear-gradient(180deg, rgba(0,0,0,0) 30%, rgba(0,0,0,0.85) 100%), url(${asset("/profile.jpg")})`,
         }}
       />
       {/* fallback monogram sheen when no photo */}

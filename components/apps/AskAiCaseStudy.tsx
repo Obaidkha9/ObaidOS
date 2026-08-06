@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, type ReactNode } from "react";
 import { motion, useInView, animate } from "framer-motion";
 import SmoothScroll from "@/components/os/SmoothScroll";
 import BackToTop from "@/components/os/BackToTop";
+import { asset } from "@/lib/asset";
 
 /* ------------------------------------------------------------------ */
 /*  Ask.ai — Turning Curiosity Into a Habit.                          */
@@ -429,7 +430,7 @@ export default function AskAiCaseStudy({ onBack: _onBack }: { onBack: () => void
         <Section style={{ background: SURF }}>
           <Reveal><Kicker n="11" label="Final UI Showcase" /></Reveal>
           <div className="grid gap-4 sm:grid-cols-2">
-            {["/askai-ui-1.jpg", "/askai-ui-2.jpg", "/askai-ui-3.jpg", "/askai-ui-4.jpg", "/askai-ui-5.jpg"].map((src, i) => (
+            {[asset("/askai-ui-1.jpg"), asset("/askai-ui-2.jpg"), asset("/askai-ui-3.jpg"), asset("/askai-ui-4.jpg"), asset("/askai-ui-5.jpg")].map((src, i) => (
               <Reveal key={src} delay={(i % 2) * 0.06} className={i === 0 ? "sm:col-span-2" : ""}>
                 <motion.div whileHover={{ y: -6 }} className="overflow-hidden rounded-2xl ring-1 ring-white/10" style={{ background: CARD }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}

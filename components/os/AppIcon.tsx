@@ -6,6 +6,7 @@ import Image from "next/image";
 import type { AppMeta } from "@/lib/apps";
 import { AppArt } from "@/components/icons/AppArt";
 import { useOS } from "@/lib/store";
+import { asset } from "@/lib/asset";
 
 /* Icons drawn live in-app (SVG) rather than from a PNG:
    brand logos + the Calendar-style Timeline icon (shows today's date). */
@@ -74,7 +75,7 @@ export default function AppIcon({
           // full-bleed square asset → clip to a squircle + inset so it matches the others
           <span className="absolute inset-[9%] overflow-hidden rounded-[22.5%] shadow-[0_8px_16px_rgba(0,0,0,0.28)]">
             <Image
-              src={`/icons/${app.id}.png`}
+              src={asset(`/icons/${app.id}.png`)}
               alt={app.name}
               fill
               sizes="64px"
@@ -86,7 +87,7 @@ export default function AppIcon({
         ) : (
           // the real macOS icon (already a squircle with baked-in shadow)
           <Image
-            src={`/icons/${app.id}.png`}
+            src={asset(`/icons/${app.id}.png`)}
             alt={app.name}
             fill
             sizes="64px"

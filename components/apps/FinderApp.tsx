@@ -7,6 +7,7 @@ import { ABOUT, EXPERIENCE, PROJECTS, PROFILE } from "@/lib/content";
 import { useLaunch } from "@/lib/useLaunch";
 import { useOS } from "@/lib/store";
 import { spring } from "@/lib/utils";
+import { asset } from "@/lib/asset";
 
 /* ------------------------------------------------------------------ */
 /*  macOS-Tahoe Finder — two contexts (About / Projects), each with    */
@@ -39,11 +40,11 @@ const ACCENT = "#ff9f0a";
 
 /* per-project cover images used for each folder's cover.png */
 const PROJECT_COVER: Record<string, string> = {
-  "employee-portal": "/employee-portal.webp",
-  "ask-ai": "/askai.webp",
-  carwaalah: "/carwaalah-card.jpg",
-  "youtube-redesign": "/youtube.webp",
-  "design-system": "/designsystem.webp",
+  "employee-portal": asset("/employee-portal.webp"),
+  "ask-ai": asset("/askai.webp"),
+  carwaalah: asset("/carwaalah-card.jpg"),
+  "youtube-redesign": asset("/youtube.webp"),
+  "design-system": asset("/designsystem.webp"),
 };
 
 /* ---------- Quick-Look document renderers ------------------------- */
@@ -129,8 +130,8 @@ function useTree(): Record<Section, Node[]> {
           </pre>
         ),
       },
-      { id: "about-setup", name: "My Setup.png", kind: "file", ext: "png", src: "/interest-8.jpg" },
-      { id: "about-video", name: "Wanderer.mp4", kind: "file", ext: "mp4", modified: "Today", src: "/wanderer.mp4", rate: 0.8 },
+      { id: "about-setup", name: "My Setup.png", kind: "file", ext: "png", src: asset("/interest-8.jpg") },
+      { id: "about-video", name: "Wanderer.mp4", kind: "file", ext: "mp4", modified: "Today", src: asset("/wanderer.mp4"), rate: 0.8 },
     ];
 
     const expFolders: Node[] = [...EXPERIENCE].reverse().map((e) => ({
@@ -232,19 +233,19 @@ function useTree(): Record<Section, Node[]> {
     ];
 
     const certs: Node[] = [
-      { id: "cert-uiux", name: "UI-UX & Figma — Udemy.png", src: "/cert-uiux.webp" },
-      { id: "cert-htmlcss", name: "HTML5 & CSS3 — Udemy.png", src: "/cert-htmlcss.webp" },
-      { id: "cert-adobexd", name: "Adobe XD Masterclass — Udemy.png", src: "/cert-adobexd.webp" },
-      { id: "cert-webflow", name: "Figma to Webflow — Udemy.png", src: "/cert-webflow.webp" },
-      { id: "cert-wordpress", name: "WordPress Developer — Udemy.png", src: "/cert-wordpress.webp" },
+      { id: "cert-uiux", name: "UI-UX & Figma — Udemy.png", src: asset("/cert-uiux.webp") },
+      { id: "cert-htmlcss", name: "HTML5 & CSS3 — Udemy.png", src: asset("/cert-htmlcss.webp") },
+      { id: "cert-adobexd", name: "Adobe XD Masterclass — Udemy.png", src: asset("/cert-adobexd.webp") },
+      { id: "cert-webflow", name: "Figma to Webflow — Udemy.png", src: asset("/cert-webflow.webp") },
+      { id: "cert-wordpress", name: "WordPress Developer — Udemy.png", src: asset("/cert-wordpress.webp") },
     ].map((c) => ({ ...c, kind: "file" as const, ext: "png" }));
 
     const interests: Node[] = [
-      { id: "in-vid-1", name: "Watching Cards (Tehri).mp4", kind: "file", ext: "mp4", src: "/interest-1.mp4" },
-      { id: "in-vid-2", name: "Origami.mp4", kind: "file", ext: "mp4", src: "/interest-2.mp4" },
-      { id: "in-vid-3", name: "Shooting.mp4", kind: "file", ext: "mp4", src: "/interest-3.mp4" },
-      { id: "in-vid-4", name: "Snooker.mp4", kind: "file", ext: "mp4", src: "/interest-4.mp4" },
-      { id: "in-vid-7", name: "Window Shopping.mp4", kind: "file", ext: "mp4", src: "/interest-7.mp4" },
+      { id: "in-vid-1", name: "Watching Cards (Tehri).mp4", kind: "file", ext: "mp4", src: asset("/interest-1.mp4") },
+      { id: "in-vid-2", name: "Origami.mp4", kind: "file", ext: "mp4", src: asset("/interest-2.mp4") },
+      { id: "in-vid-3", name: "Shooting.mp4", kind: "file", ext: "mp4", src: asset("/interest-3.mp4") },
+      { id: "in-vid-4", name: "Snooker.mp4", kind: "file", ext: "mp4", src: asset("/interest-4.mp4") },
+      { id: "in-vid-7", name: "Window Shopping.mp4", kind: "file", ext: "mp4", src: asset("/interest-7.mp4") },
     ];
 
     const contact: Node[] = [
@@ -271,7 +272,7 @@ function useTree(): Record<Section, Node[]> {
       <pre className="overflow-x-auto rounded-lg bg-black/40 p-3 font-mono text-[12.5px] leading-relaxed text-white/80 ring-1 ring-white/10">{children}</pre>
     );
     const dsFiles: Node[] = [
-      { id: "ds-variables", name: "variables.png", kind: "file", ext: "png", modified: "This week", src: "/ds-variables.jpg" },
+      { id: "ds-variables", name: "variables.png", kind: "file", ext: "png", modified: "This week", src: asset("/ds-variables.jpg") },
       {
         id: "ds-docs",
         name: "documentation.pdf",
@@ -387,32 +388,32 @@ function useTree(): Record<Section, Node[]> {
       },
     ];
     const assignmentFiles: Node[] = [
-      { id: "asg-campo", name: "Campo — Landing Page.png", src: "/assign-campo.webp" },
-      { id: "asg-carwaalah", name: "Carwaalah.png", src: "/assign-carwaalah.webp" },
-      { id: "asg-chatbot", name: "Chatbot.ai.png", src: "/assign-chatbot.webp" },
-      { id: "asg-easify", name: "Easify.png", src: "/assign-easify.webp" },
-      { id: "asg-elearning", name: "eLearning — Dashboard.png", src: "/assign-elearning.webp" },
-      { id: "asg-taskease", name: "Taskease.png", src: "/assign-taskease.webp" },
-      { id: "asg-thermofisher", name: "ThermoFisher.png", src: "/assign-thermofisher.webp" },
-      { id: "asg-xmoonshot", name: "Xmoonshot.png", src: "/assign-xmoonshot.webp" },
-      { id: "asgn-3", name: "Hotel Booking App.png", src: "/asgn-3.jpg" },
-      { id: "asgn-2", name: "Astrology App — Wireframes.png", src: "/asgn-2.jpg" },
-      { id: "asgn-5", name: "LinkLeaf — Customizer.png", src: "/asgn-5.jpg" },
-      { id: "asgn-6", name: "Relume — AI Websites.png", src: "/asgn-6.jpg" },
-      { id: "asgn-7", name: "LinkLeaf — Mobile Screens.png", src: "/asgn-7.jpg" },
+      { id: "asg-campo", name: "Campo — Landing Page.png", src: asset("/assign-campo.webp") },
+      { id: "asg-carwaalah", name: "Carwaalah.png", src: asset("/assign-carwaalah.webp") },
+      { id: "asg-chatbot", name: "Chatbot.ai.png", src: asset("/assign-chatbot.webp") },
+      { id: "asg-easify", name: "Easify.png", src: asset("/assign-easify.webp") },
+      { id: "asg-elearning", name: "eLearning — Dashboard.png", src: asset("/assign-elearning.webp") },
+      { id: "asg-taskease", name: "Taskease.png", src: asset("/assign-taskease.webp") },
+      { id: "asg-thermofisher", name: "ThermoFisher.png", src: asset("/assign-thermofisher.webp") },
+      { id: "asg-xmoonshot", name: "Xmoonshot.png", src: asset("/assign-xmoonshot.webp") },
+      { id: "asgn-3", name: "Hotel Booking App.png", src: asset("/asgn-3.jpg") },
+      { id: "asgn-2", name: "Astrology App — Wireframes.png", src: asset("/asgn-2.jpg") },
+      { id: "asgn-5", name: "LinkLeaf — Customizer.png", src: asset("/asgn-5.jpg") },
+      { id: "asgn-6", name: "Relume — AI Websites.png", src: asset("/asgn-6.jpg") },
+      { id: "asgn-7", name: "LinkLeaf — Mobile Screens.png", src: asset("/asgn-7.jpg") },
     ].map((c) => ({ ...c, kind: "file" as const, ext: "png" }));
 
     // Artworks — poster / graphic design pieces (same file-tile → preview flow)
     const artworkFiles: Node[] = [
-      { id: "art-1", name: "Tottenham — Son.png", src: "/art-1.jpg" },
-      { id: "art-2", name: "Perfection.png", src: "/art-2.jpg" },
-      { id: "art-3", name: "Mohamed Salah.png", src: "/art-3.jpg" },
-      { id: "art-4", name: "Dragon Ball Z.png", src: "/art-4.jpg" },
-      { id: "art-5", name: "Be Bold.png", src: "/art-5.jpg" },
-      { id: "art-6", name: "Her Gaze.png", src: "/art-6.jpg" },
-      { id: "art-7", name: "Gohan.png", src: "/art-7.jpg" },
-      { id: "art-8", name: "Woggles — Winter Special.png", src: "/art-8.jpg" },
-      { id: "art-9", name: "The Garden of Secrets.png", src: "/art-9.jpg" },
+      { id: "art-1", name: "Tottenham — Son.png", src: asset("/art-1.jpg") },
+      { id: "art-2", name: "Perfection.png", src: asset("/art-2.jpg") },
+      { id: "art-3", name: "Mohamed Salah.png", src: asset("/art-3.jpg") },
+      { id: "art-4", name: "Dragon Ball Z.png", src: asset("/art-4.jpg") },
+      { id: "art-5", name: "Be Bold.png", src: asset("/art-5.jpg") },
+      { id: "art-6", name: "Her Gaze.png", src: asset("/art-6.jpg") },
+      { id: "art-7", name: "Gohan.png", src: asset("/art-7.jpg") },
+      { id: "art-8", name: "Woggles — Winter Special.png", src: asset("/art-8.jpg") },
+      { id: "art-9", name: "The Garden of Secrets.png", src: asset("/art-9.jpg") },
     ].map((c) => ({ ...c, kind: "file" as const, ext: "png" }));
 
     // the "agent AI" mockup — borrowed from the Assignments set
@@ -436,7 +437,7 @@ function useTree(): Record<Section, Node[]> {
 function FolderIcon({ size = 46 }: { size?: number }) {
   return (
     // eslint-disable-next-line @next/next/no-img-element
-    <img src="/folder.webp" alt="" width={size} height={size} className="object-contain" draggable={false} style={{ width: size, height: size }} />
+    <img src={asset("/folder.webp")} alt="" width={size} height={size} className="object-contain" draggable={false} style={{ width: size, height: size }} />
   );
 }
 function DocIcon({ ext = "", size = 44 }: { ext?: string; size?: number }) {

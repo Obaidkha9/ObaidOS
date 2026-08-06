@@ -36,6 +36,15 @@ yarn-error.log*
 # vercel
 .vercel
 
+# source/scratch media not served by the app (app assets live in /public)
+# excluded to keep the repo lean and stay under GitHub's 100MB file limit
+/Assignments/
+/memories/
+/video_*.mp4
+/Snooker*.mp4
+/*.png
+/UI:UX.png
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

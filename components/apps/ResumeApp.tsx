@@ -2,9 +2,14 @@
 
 import { useState } from "react";
 import SmoothScroll from "@/components/os/SmoothScroll";
-import { PROFILE, EXPERIENCE, ABOUT } from "@/lib/content";
+import { PROFILE } from "@/lib/content";
+import { asset } from "@/lib/asset";
 
 const FILE = "/CV_2026.pdf";
+// The PDF rendered to an image so it displays reliably in-app on every device
+// (mobile Safari won't render a PDF inside an iframe). The real PDF above is
+// still what the Download/Share buttons hand off.
+const PAGE = "/cv-2026.png";
 
 export default function ResumeApp() {
   const [zoom, setZoom] = useState(1);
@@ -12,9 +17,9 @@ export default function ResumeApp() {
   const share = async () => {
     try {
       if (navigator.share) {
-        await navigator.share({ title: "CV_2026.pdf", url: FILE });
+        await navigator.share({ title: "CV_2026.pdf", url: asset(FILE) });
       } else {
-        await navigator.clipboard.writeText(window.location.origin + FILE);
+        await navigator.clipboard.writeText(window.location.origin + asset(FILE));
       }
     } catch {
       /* cancelled */
@@ -44,68 +49,23 @@ export default function ResumeApp() {
         </div>
       </div>
 
-      {/* page */}
+      {/* page — the actual CV rendered from the PDF */}
       <SmoothScroll className="bg-[#1c1c1e]">
         <div className="flex justify-center px-4 py-6">
-          <div
-            className="w-full max-w-[560px] origin-top rounded-sm bg-white text-neutral-800 shadow-2xl"
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={asset(PAGE)}
+            alt={`${PROFILE.name} — résumé`}
+            className="w-full max-w-[560px] origin-top rounded-sm bg-white shadow-2xl"
             style={{ transform: `scale(${zoom})`, transformOrigin: "top center" }}
-          >
-            <div className="p-10">
-              <h1 className="text-3xl font-bold text-neutral-900">{PROFILE.name}</h1>
-              <p className="text-[#0f53fc]">{PROFILE.role}</p>
-              <p className="mt-1 text-xs text-neutral-500">
-                {PROFILE.email} · {PROFILE.location}
-              </p>
-
-              <hr className="my-5 border-neutral-200" />
-
-              <h2 className="mb-1 text-xs font-bold uppercase tracking-widest text-neutral-400">
-                Profile
-              </h2>
-              <p className="text-sm leading-relaxed text-neutral-700">
-                {ABOUT.sections[0].body}
-              </p>
-
-              <h2 className="mb-2 mt-5 text-xs font-bold uppercase tracking-widest text-neutral-400">
-                Experience
-              </h2>
-              <div className="space-y-4">
-                {[...EXPERIENCE].reverse().map((e) => (
-                  <div key={e.id}>
-                    <div className="flex items-baseline justify-between">
-                      <span className="font-semibold text-neutral-900">
-                        {e.role} · {e.company}
-                      </span>
-                      <span className="text-xs text-neutral-500">{e.period}</span>
-                    </div>
-                    <p className="text-sm text-neutral-600">{e.summary}</p>
-                  </div>
-                ))}
-              </div>
-
-              <h2 className="mb-2 mt-5 text-xs font-bold uppercase tracking-widest text-neutral-400">
-                Skills
-              </h2>
-              <div className="flex flex-wrap gap-1.5">
-                {(ABOUT.sections[1].list ?? []).map((s) => (
-                  <span
-                    key={s}
-                    className="rounded bg-neutral-100 px-2 py-0.5 text-xs text-neutral-700"
-                  >
-                    {s}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
+          />
         </div>
       </SmoothScroll>
 
       {/* bottom actions */}
       <div className="glass flex items-center justify-around px-6 pb-[max(env(safe-area-inset-bottom),16px)] pt-3">
         <a
-          href={FILE}
+          href={asset(FILE)}
           download
           className="flex flex-col items-center gap-0.5 text-[#0f53fc]"
         >

@@ -71,7 +71,7 @@ function Bullets({ items, cols = 1 }: { items: string[]; cols?: 1 | 2 }) {
 function useTree(): Record<Section, Node[]> {
   return useMemo(() => {
     const byId = (id: string) => PROJECTS.find((p) => p.id === id)!;
-    const projFolder = (p: (typeof PROJECTS)[number]): Node => ({
+    const projFolder = (p: (typeof PROJECTS)[number], extra: Node[] = []): Node => ({
       id: `proj-${p.id}`,
       name: p.name,
       kind: "folder",
@@ -86,6 +86,7 @@ function useTree(): Record<Section, Node[]> {
           modified: p.year,
           caseStudy: p.id,
         },
+        ...extra,
         {
           id: `${p.id}-cover`,
           name: "cover.png",
@@ -250,7 +251,18 @@ function useTree(): Record<Section, Node[]> {
     ];
 
     const contact: Node[] = [
-      { id: "ct-mail", name: "Mail.app", kind: "link", ext: "app", href: `mailto:${PROFILE.email}` },
+      {
+        id: "ct-mail",
+        name: "Mail.app",
+        kind: "link",
+        ext: "app",
+        // Opens Gmail's compose window (new message) addressed to Obaid, with a
+        // ready-to-edit subject + greeting.
+        href:
+          `https://mail.google.com/mail/?view=cm&fs=1&to=${PROFILE.email}` +
+          `&su=${encodeURIComponent("Let's connect — via Obaid OS")}` +
+          `&body=${encodeURIComponent("Hi Obaid,\n\nI came across your portfolio (Obaid OS) and I'd love to connect.\n\n")}`,
+      },
       { id: "ct-li", name: "LinkedIn.url", kind: "link", ext: "url", href: PROFILE.linkedin },
       { id: "ct-naukri", name: "Naukri.url", kind: "link", ext: "url", href: "https://www.naukri.com" },
     ];
@@ -273,7 +285,6 @@ function useTree(): Record<Section, Node[]> {
       <pre className="overflow-x-auto rounded-lg bg-black/40 p-3 font-mono text-[12.5px] leading-relaxed text-white/80 ring-1 ring-white/10">{children}</pre>
     );
     const dsFiles: Node[] = [
-      { id: "ds-variables", name: "variables.png", kind: "file", ext: "png", modified: "This week", src: asset("/ds-variables.jpg") },
       {
         id: "ds-docs",
         name: "documentation.pdf",
@@ -387,6 +398,7 @@ function useTree(): Record<Section, Node[]> {
           </Doc>
         ),
       },
+      { id: "ds-variables", name: "variables.png", kind: "file", ext: "png", modified: "This week", src: asset("/ds-variables.jpg") },
     ];
     const assignmentFiles: Node[] = [
       { id: "asg-campo", name: "Campo — Landing Page.png", src: asset("/assign-campo.webp") },
@@ -421,11 +433,11 @@ function useTree(): Record<Section, Node[]> {
     const agentAi = assignmentFiles.find((f) => f.id === "asg-chatbot")!;
 
     const projects: Node[] = [
-      { id: "projects", name: "Featured Projects", kind: "folder", color: "#0a84ff", icon: "featured", children: ["design-system", "employee-portal", "youtube-redesign", "ask-ai", "carwaalah"].map((pid) => projFolder(byId(pid))) },
+      { id: "projects", name: "Featured Projects", kind: "folder", color: "#0a84ff", icon: "featured", children: ["design-system", "employee-portal", "youtube-redesign", "ask-ai", "carwaalah"].map((pid) => projFolder(byId(pid), pid === "design-system" ? dsFiles : [])) },
       { id: "artworks", name: "Artworks", kind: "folder", color: "#ff375f", icon: "artwork", children: artworkFiles },
       { id: "assignments", name: "Assignments", kind: "folder", color: "#ff9f0a", icon: "assignments", children: assignmentFiles },
       { id: "ai-products", name: "AI Products", kind: "folder", color: "#bf5af2", icon: "ai", children: [projFolder(byId("ask-ai")), agentAi] },
-      { id: "design-systems", name: "Design Systems", kind: "folder", color: "#30d158", icon: "layers", children: [projFolder(byId("design-system")), ...dsFiles] },
+      { id: "design-systems", name: "Design Systems", kind: "folder", color: "#30d158", icon: "layers", children: [projFolder(byId("design-system"), dsFiles)] },
     ];
 
     return { about, projects };

@@ -27,6 +27,7 @@ interface Node {
   modified?: string;
   color?: string; // folder tint / image gradient
   href?: string; // external link
+  mail?: { to: string; subject: string; body: string }; // compose: native app on touch, Gmail web on desktop
   view?: View; // preferred view when this folder is opened
   icon?: string; // sidebar icon key (projects section)
   src?: string; // real image (e.g. project cover.png)
@@ -256,12 +257,13 @@ function useTree(): Record<Section, Node[]> {
         name: "Mail.app",
         kind: "link",
         ext: "app",
-        // Opens Gmail's compose window (new message) addressed to Obaid, with a
-        // ready-to-edit subject + greeting.
-        href:
-          `https://mail.google.com/mail/?view=cm&fs=1&to=${PROFILE.email}` +
-          `&su=${encodeURIComponent("Let's connect — via Obaid OS")}` +
-          `&body=${encodeURIComponent("Hi Obaid,\n\nI came across your portfolio (Obaid OS) and I'd love to connect.\n\n")}`,
+        // Touch devices → default mail app (already signed in) via mailto:;
+        // desktop → Gmail web compose in the logged-in session. See open().
+        mail: {
+          to: PROFILE.email,
+          subject: "Let's connect — via Obaid OS",
+          body: "Hi Obaid,\n\nI came across your portfolio (Obaid OS) and I'd love to connect.\n\n",
+        },
       },
       { id: "ct-li", name: "LinkedIn.url", kind: "link", ext: "url", href: PROFILE.linkedin },
       { id: "ct-naukri", name: "Naukri.url", kind: "link", ext: "url", href: "https://www.naukri.com" },
@@ -647,6 +649,17 @@ export default function FinderApp({
         ["asg-astro", "asg-campo", "asg-chatbot", "ds-variables"].includes(node.id) ||
         node.id.startsWith("asgn-"); // the detailed UI mockups / screenshots are zoomable
       launch("preview", el ?? null, { context: node.name, payload: JSON.stringify({ src: node.src, name: node.name, zoom, rate: node.rate }) });
+    } else if (node.mail) {
+      // Touch devices open their signed-in default mail app (mailto:); desktops
+      // open Gmail web compose in the already-logged-in session — no login step.
+      const { to, subject, body } = node.mail;
+      const touch = typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches;
+      if (touch) {
+        window.location.href = `mailto:${to}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      } else {
+        const gmail = `https://mail.google.com/mail/?view=cm&fs=1&to=${to}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+        window.open(gmail, "_blank", "noopener,noreferrer");
+      }
     } else if (node.kind === "link") window.open(node.href, "_blank", "noopener,noreferrer");
     else setLook(node); // text file → Quick Look
   };

@@ -10,7 +10,7 @@ import { useLaunch } from "@/lib/useLaunch";
 export default function PhotosApp({ onClose }: AppProps) {
   const isMobile = useOS((s) => s.tier === "mobile");
   const launch = useLaunch();
-  const [section, setSection] = useState("Memories");
+  const [section, setSection] = useState("Arsenal");
   const visible = PHOTOS.filter((p) => p.category === section);
   const gridRef = useRef<HTMLDivElement>(null);
 

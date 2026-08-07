@@ -68,14 +68,14 @@ export default function ResumeApp() {
         <a
           href={asset(FILE)}
           download="Obaid's Resume.pdf"
-          className="flex flex-col items-center gap-0.5 text-[#0f53fc]"
+          className="flex flex-col items-center gap-0.5 text-[#ff9f0a]"
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
             <path d="M12 3v12m0 0l-4-4m4 4l4-4M5 21h14" />
           </svg>
           <span className="text-[11px]">Download</span>
         </a>
-        <button onClick={share} className="flex flex-col items-center gap-0.5 text-[#0f53fc]">
+        <button onClick={share} className="flex flex-col items-center gap-0.5 text-[#ff9f0a]">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round">
             <path d="M12 15V4m0 0L8 8m4-4l4 4M4 14v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5" />
           </svg>

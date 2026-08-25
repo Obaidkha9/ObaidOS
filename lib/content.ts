@@ -205,6 +205,29 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
+    id: "focus-forge",
+    name: "FocusForge",
+    subtitle: "Building sustainable focus habits through gamification",
+    color: "#6258f6",
+    year: "2026",
+    tags: ["Behavioral Design", "Gamification", "Mobile App"],
+    overview:
+      "FocusForge helps remote professionals build sustainable focus habits through simple sessions, visible progress, and meaningful rewards.",
+    problem:
+      "Remote work is flexible, but constant distractions, weak accountability, and inconsistent routines make focus fragile over time.",
+    research:
+      "The concept centers on three user groups—remote employees, freelancers, and founders—who share a need for motivation and accountability rather than another task manager.",
+    wireframes:
+      "The primary loop stays intentionally simple: open the app, view a goal, start a session, complete it, earn a reward, track progress, and return tomorrow.",
+    solution:
+      "A supportive focus companion combining timed sessions, XP progression, badges, streaks, custom milestones, and progress analytics.",
+    impact: [
+      "Turns focus into a repeatable daily habit",
+      "Makes progress visible through goals and milestones",
+      "Balances accountability with positive reinforcement",
+    ],
+  },
+  {
     id: "ask-ai",
     name: "ASK AI",
     subtitle: "Conversational intelligence",

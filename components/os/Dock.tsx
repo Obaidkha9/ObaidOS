@@ -22,6 +22,7 @@ const PROJECT_COVER: Record<string, string> = {
   carwaalah: asset("/carwaalah-card.jpg"),
   "youtube-redesign": asset("/youtube.webp"),
   "design-system": asset("/designsystem.webp"),
+  "focus-forge": asset("/focus-forge.webp"),
 };
 
 /* cover art for windows that don't have a dock icon (e.g. games) */
@@ -87,7 +88,9 @@ export default function Dock() {
   const reduced = useOS((s) => s.reducedMotion);
   const windows = useOS((s) => s.windows);
   const restoreWindow = useOS((s) => s.restoreWindow);
-  const isMobile = useOS((s) => s.tier === "mobile");
+  const tier = useOS((s) => s.tier);
+  const isMobile = tier === "mobile";
+  const showLabels = tier === "mobile" || tier === "tablet";
   const minimized = windows.filter((w) => w.minimized);
   const mouseX = useMotionValue(Infinity);
   // Phones can't fit ~9 slots across; shrink each slot and let the pill scroll
@@ -114,7 +117,7 @@ export default function Dock() {
           const hasMinimized = minimized.some((w) => w.appId === (app.route ?? app.id));
           return (
             <DockItem key={app.id} mouseX={mouseX} reduced={reduced} label={app.name} slot={slot}>
-              <AppIcon app={app} label={false} index={i} />
+              <AppIcon app={app} label={showLabels} index={i} />
               {hasMinimized && (
                 <span className="pointer-events-none absolute -bottom-0.5 left-1/2 h-1 w-1 -translate-x-1/2 rounded-full bg-white/80" />
               )}
@@ -147,22 +150,29 @@ export default function Dock() {
                 transition={{ type: "spring", stiffness: 460, damping: 30 }}
               >
                 <DockItem mouseX={mouseX} reduced={reduced} label={t.label} slot={slot}>
-                  <button
-                    onClick={() => restoreWindow(win.key)}
-                    aria-label={`Restore ${t.label}`}
-                    className="group relative block aspect-square w-full max-w-[64px] transition-transform active:scale-90"
-                  >
-                    {/* inset 9% to match the macOS icons' baked-in padding */}
-                    <span className="absolute inset-[9%] overflow-hidden rounded-[22.5%] bg-[#1c1c1e] shadow-[0_8px_16px_rgba(0,0,0,0.35)] ring-1 ring-white/15">
-                      {/* eslint-disable-next-line @next/next/no-img-element */}
-                      <img
-                        src={t.src}
-                        alt=""
-                        draggable={false}
-                        className={`h-full w-full ${t.cover ? "object-cover" : "object-contain p-1"}`}
-                      />
-                    </span>
-                  </button>
+                  <div className="flex select-none flex-col items-center gap-1.5">
+                    <button
+                      onClick={() => restoreWindow(win.key)}
+                      aria-label={`Restore ${t.label}`}
+                      className="group relative block aspect-square w-full max-w-[64px] transition-transform active:scale-90"
+                    >
+                      {/* inset 9% to match the macOS icons' baked-in padding */}
+                      <span className="absolute inset-[9%] overflow-hidden rounded-[22.5%] bg-[#1c1c1e] shadow-[0_8px_16px_rgba(0,0,0,0.35)] ring-1 ring-white/15">
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={t.src}
+                          alt=""
+                          draggable={false}
+                          className={`h-full w-full ${t.cover ? "object-cover" : "object-contain p-1"}`}
+                        />
+                      </span>
+                    </button>
+                    {showLabels && (
+                      <span className="max-w-[68px] truncate text-[11px] font-medium text-white/90 drop-shadow">
+                        {t.label}
+                      </span>
+                    )}
+                  </div>
                 </DockItem>
               </motion.div>
             );

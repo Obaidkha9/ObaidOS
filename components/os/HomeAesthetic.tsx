@@ -65,6 +65,7 @@ const rnd = (n: number) => Math.round(n * 100) / 100;
 
 const FEATURED: { id: string; name: string; sub: string; color: string; img: string; pos?: string; contain?: boolean; light?: boolean; noLabel?: boolean; stacked?: boolean; href?: string }[] = [
   { id: "design-system", name: "Design System", sub: "Scalable Design System", color: "#34c759", img: asset("/designsystem.webp") },
+  { id: "focus-forge", name: "FocusForge", sub: "Build unbreakable focus habits", color: "#6258f6", img: asset("/focus-forge.webp"), pos: "center" },
   { id: "youtube-redesign", name: "YouTube Redesign", sub: "A concept study", color: "#ff3b30", img: asset("/youtube.webp") },
   { id: "employee-portal", name: "Employee Portal", sub: "", color: "#B7A8E6", img: asset("/employee-portal.webp"), stacked: true },
   { id: "carwaalah", name: "Carwaalah", sub: "Car rentals, redesigned", color: "#FFC83D", img: asset("/carwaalah-card.jpg"), pos: "center", contain: true, light: true, noLabel: true },

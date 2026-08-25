@@ -9,6 +9,7 @@ import EmployeePortalCaseStudy from "./EmployeePortalCaseStudy";
 import FigmaCaseStudy from "./FigmaCaseStudy";
 import AskAiCaseStudy from "./AskAiCaseStudy";
 import CarwaalahCaseStudy from "./CarwaalahCaseStudy";
+import FocusForgeCaseStudy from "./FocusForgeCaseStudy";
 import { PROJECTS, type Project } from "@/lib/content";
 import { useOS } from "@/lib/store";
 
@@ -166,6 +167,8 @@ export default function ProjectsApp({ onClose, payload }: AppProps) {
           ? <AskAiCaseStudy key={open.id} onBack={back} />
           : open.id === "carwaalah"
           ? <CarwaalahCaseStudy key={open.id} onBack={back} />
+          : open.id === "focus-forge"
+          ? <FocusForgeCaseStudy key={open.id} onBack={back} />
           : <CaseStudy key={open.id} p={open} onBack={back} />)}
       </AnimatePresence>
     </div>

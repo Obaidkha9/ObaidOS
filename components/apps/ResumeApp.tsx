@@ -10,7 +10,7 @@ const FILE = "/Obaids-Resume.pdf";
 // The PDF rendered to an image so it displays reliably in-app on every device
 // (mobile Safari won't render a PDF inside an iframe). The real PDF above is
 // still what the Download/Share buttons hand off.
-const PAGE = "/obaids-resume.png";
+const PAGE = "/obaids-resume-2026.png";
 
 export default function ResumeApp() {
   const [zoom, setZoom] = useState(1);

@@ -46,6 +46,7 @@ const PROJECT_COVER: Record<string, string> = {
   carwaalah: asset("/carwaalah-card.jpg"),
   "youtube-redesign": asset("/youtube.webp"),
   "design-system": asset("/designsystem.webp"),
+  "focus-forge": asset("/focus-forge.webp"),
 };
 
 /* ---------- Quick-Look document renderers ------------------------- */
@@ -435,7 +436,7 @@ function useTree(): Record<Section, Node[]> {
     const agentAi = assignmentFiles.find((f) => f.id === "asg-chatbot")!;
 
     const projects: Node[] = [
-      { id: "projects", name: "Featured Projects", kind: "folder", color: "#0a84ff", icon: "featured", children: ["design-system", "employee-portal", "youtube-redesign", "ask-ai", "carwaalah"].map((pid) => projFolder(byId(pid), pid === "design-system" ? dsFiles : [])) },
+      { id: "projects", name: "Featured Projects", kind: "folder", color: "#0a84ff", icon: "featured", children: ["design-system", "focus-forge", "employee-portal", "youtube-redesign", "ask-ai", "carwaalah"].map((pid) => projFolder(byId(pid), pid === "design-system" ? dsFiles : [])) },
       { id: "artworks", name: "Artworks", kind: "folder", color: "#ff375f", icon: "artwork", children: artworkFiles },
       { id: "assignments", name: "Assignments", kind: "folder", color: "#ff9f0a", icon: "assignments", children: assignmentFiles },
       { id: "ai-products", name: "AI Products", kind: "folder", color: "#bf5af2", icon: "ai", children: [projFolder(byId("ask-ai")), agentAi] },
@@ -854,7 +855,7 @@ export default function FinderApp({
             </div>
           ) : (
             /* gallery */
-            <Gallery items={items} onOpen={open} isMobile={isMobile} />
+            <Gallery items={items} onOpen={open} isMobile={isMobile} folderPreviews />
           )}
         </main>
       </div>
@@ -883,7 +884,79 @@ export default function FinderApp({
   );
 }
 
-function Gallery({ items, onOpen, isMobile = false }: { items: Node[]; onOpen: (n: Node) => void; isMobile?: boolean }) {
+function FolderGalleryPreview({ folder }: { folder: Node }) {
+  const children = folder.children ?? [];
+  const previews = children.slice(0, 4);
+  const firstImage = children.find((child) => child.src);
+
+  // Keep the folder's first items in order, but ensure its cover artwork is
+  // represented when a longer folder would otherwise push it out of view.
+  if (firstImage && !previews.includes(firstImage)) {
+    previews[Math.min(3, previews.length)] = firstImage;
+  }
+
+  return (
+    <div
+      className={`grid h-[78%] w-[78%] max-w-[440px] grid-cols-2 gap-3 ${previews.length > 2 ? "grid-rows-2" : "grid-rows-1"}`}
+    >
+      {previews.map((child) => (
+        <div
+          key={child.id}
+          className="relative flex h-full min-h-0 w-full items-center justify-center overflow-hidden rounded-xl ring-1 ring-white/15"
+        >
+          {child.src && !/\.(mp4|webm|mov|m4v)$/i.test(child.src) ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={child.src} alt={child.name} className="h-full w-full object-cover" />
+          ) : (
+            <div className="flex flex-col items-center gap-2 px-2 text-center">
+              <NodeIcon node={child} size={48} />
+              <span className="max-w-full truncate text-[11px] font-medium text-white/70">{child.name}</span>
+            </div>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function FileGalleryPreview({ file }: { file: Node }) {
+  return (
+    <div className="flex h-[84%] w-[82%] max-w-[440px] flex-col overflow-hidden rounded-xl bg-[#1c1c1e] shadow-[0_16px_44px_rgba(0,0,0,0.35)] ring-1 ring-white/15">
+      <div className="flex h-10 shrink-0 items-center gap-2 border-b px-3" style={{ borderColor: "rgba(255,255,255,0.08)" }}>
+        <NodeIcon node={file} size={20} />
+        <span className="min-w-0 flex-1 truncate text-[12px] font-semibold text-white/80">{file.name}</span>
+        <span className="text-[10px] uppercase text-white/35">{file.ext ?? file.kind}</span>
+      </div>
+      {file.preview ? (
+        <div className="min-h-0 flex-1 overflow-hidden p-5 text-left">
+          <div className="origin-top-left scale-[0.82] [width:122%]">{file.preview}</div>
+        </div>
+      ) : (
+        <div className="flex min-h-0 flex-1 flex-col items-center justify-center gap-3 px-5 text-center">
+          <NodeIcon node={file} size={82} />
+          <div>
+            <p className="text-[13px] font-semibold text-white/80">{file.name}</p>
+            <p className="mt-1 text-[11px] text-white/40">
+              {(file.ext ?? file.kind).toUpperCase()}{file.modified ? ` · ${file.modified}` : ""}
+            </p>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function Gallery({
+  items,
+  onOpen,
+  isMobile = false,
+  folderPreviews = false,
+}: {
+  items: Node[];
+  onOpen: (n: Node) => void;
+  isMobile?: boolean;
+  folderPreviews?: boolean;
+}) {
   const [sel, setSel] = useState(0);
   const hero = items[Math.min(sel, items.length - 1)];
   return (
@@ -895,13 +968,17 @@ function Gallery({ items, onOpen, isMobile = false }: { items: Node[]; onOpen: (
           onClick={() => isMobile && onOpen(hero)}
           onDoubleClick={() => onOpen(hero)}
         >
-          {hero.src &&
+          {hero.src ?
             (/\.(mp4|webm|mov|m4v)$/i.test(hero.src) ? (
               <video src={hero.src} controls playsInline className="max-h-full max-w-full rounded-lg" />
             ) : (
               // eslint-disable-next-line @next/next/no-img-element
               <img src={hero.src} alt="" className="max-h-full max-w-full object-contain" />
-            ))}
+            )) : folderPreviews && hero.kind === "folder" ? (
+              <FolderGalleryPreview folder={hero} />
+            ) : hero.kind === "file" || hero.kind === "link" ? (
+              <FileGalleryPreview file={hero} />
+            ) : null}
         </div>
         <p className="text-[13px] font-medium text-white/85">{hero.name}</p>
       </div>

@@ -13,6 +13,7 @@ import { useOS } from "@/lib/store";
 import { useLaunch } from "@/lib/useLaunch";
 import { formatTime } from "@/lib/utils";
 import { asset } from "@/lib/asset";
+import WeatherContent from "./WeatherContent";
 /* Workspace widget — the productivity tools used to design, build & ship. */
 const TOOLS: { name: string; sub: string; href: string; icon: string; invert?: boolean }[] = [
   // row 1
@@ -67,7 +68,7 @@ const FEATURED: { id: string; name: string; sub: string; color: string; img: str
   { id: "design-system", name: "Design System", sub: "Scalable Design System", color: "#34c759", img: asset("/designsystem.webp") },
   { id: "focus-forge", name: "FocusForge", sub: "Build unbreakable focus habits", color: "#6258f6", img: asset("/focus-forge.webp"), pos: "center" },
   { id: "youtube-redesign", name: "YouTube Redesign", sub: "A concept study", color: "#ff3b30", img: asset("/youtube.webp") },
-  { id: "employee-portal", name: "Employee Portal", sub: "", color: "#B7A8E6", img: asset("/employee-portal.webp"), stacked: true },
+  { id: "employee-portal", name: "Employee Portal", sub: "", color: "#eaf4ff", img: asset("/employee-portal-attendance-v2.webp"), stacked: true },
   { id: "carwaalah", name: "Carwaalah", sub: "Car rentals, redesigned", color: "#FFC83D", img: asset("/carwaalah-card.jpg"), pos: "center", contain: true, light: true, noLabel: true },
   { id: "ask-ai", name: "ASK AI", sub: "AI-Powered Assistant", color: "#3b82f6", img: asset("/askai.webp"), pos: "center" },
 ];
@@ -379,7 +380,7 @@ function FeaturedCarousel() {
             {p.stacked ? (
               /* badge/lanyard enlarged and centred to fill the card (no title) */
               // eslint-disable-next-line @next/next/no-img-element
-              <img src={p.img} alt={p.name} className="absolute inset-0 h-full w-full origin-top scale-[0.85] object-contain object-[40%_0%] transition-transform duration-300 group-hover:scale-[0.89]" loading="lazy" />
+              <img src={p.img} alt={p.name} className="absolute inset-0 h-full w-full object-cover object-center transition-transform duration-300 group-hover:scale-[1.02]" loading="lazy" />
             ) : (
               <>
                 {p.img && (
@@ -645,30 +646,7 @@ export default function HomeAesthetic() {
 
       {/* weather — macOS dark-mode deep-blue theme */}
       <Tile area="weat" i={6} className="rounded-[16px] bg-[#2d2d33]/94 backdrop-blur-xl p-3.5" style={{ cursor: "default" }}>
-        <div className="flex h-full flex-col justify-between text-white">
-          <div>
-            <div className="flex items-center gap-1">
-              <span className="text-xs font-semibold leading-none">Jaipur</span>
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
-                <path d="M3 10.5l17.5-7.5-7.5 17.5-2.2-7.8z" />
-              </svg>
-            </div>
-            <p className="mt-1 text-4xl font-extralight leading-[0.95] tracking-tight">28°</p>
-          </div>
-          <div>
-            {/* rain cloud */}
-            <svg width="30" height="30" viewBox="0 0 24 24" fill="none" className="mb-0.5" aria-hidden>
-              <path d="M7 15.5a4 4 0 0 1 0-8 5 5 0 0 1 9.6-1.2A3.5 3.5 0 0 1 18 15.5z" fill="#f2f5f8" />
-              <g stroke="#5ab0ff" strokeWidth="2.2" strokeLinecap="round">
-                <path d="M8 17l-1.4 3" />
-                <path d="M12 17l-1.4 3" />
-                <path d="M16 17l-1.4 3" />
-              </g>
-            </svg>
-            <p className="text-xs font-medium">Rain</p>
-            <p className="text-[11px] font-normal text-white/80">H:28° L:25°</p>
-          </div>
-        </div>
+        <WeatherContent />
       </Tile>
 
       {/* Workspace — macOS-style productivity tools widget */}

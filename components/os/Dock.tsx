@@ -17,7 +17,7 @@ import { asset } from "@/lib/asset";
 
 /* cover art used as the minimized "page" thumbnail for each case study */
 const PROJECT_COVER: Record<string, string> = {
-  "employee-portal": asset("/employee-portal.webp"),
+  "employee-portal": asset("/employee-portal-attendance-v2.webp"),
   "ask-ai": asset("/askai.webp"),
   carwaalah: asset("/carwaalah-card.jpg"),
   "youtube-redesign": asset("/youtube.webp"),

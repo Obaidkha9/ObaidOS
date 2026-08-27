@@ -41,7 +41,7 @@ const ACCENT = "#ff9f0a";
 
 /* per-project cover images used for each folder's cover.png */
 const PROJECT_COVER: Record<string, string> = {
-  "employee-portal": asset("/employee-portal.webp"),
+  "employee-portal": asset("/employee-portal-attendance-v2.webp"),
   "ask-ai": asset("/askai.webp"),
   carwaalah: asset("/carwaalah-card.jpg"),
   "youtube-redesign": asset("/youtube.webp"),
@@ -436,7 +436,7 @@ function useTree(): Record<Section, Node[]> {
     const agentAi = assignmentFiles.find((f) => f.id === "asg-chatbot")!;
 
     const projects: Node[] = [
-      { id: "projects", name: "Featured Projects", kind: "folder", color: "#0a84ff", icon: "featured", children: ["design-system", "focus-forge", "employee-portal", "youtube-redesign", "ask-ai", "carwaalah"].map((pid) => projFolder(byId(pid), pid === "design-system" ? dsFiles : [])) },
+      { id: "projects", name: "Featured Projects", kind: "folder", color: "#0a84ff", icon: "featured", children: ["design-system", "focus-forge", "youtube-redesign", "employee-portal", "carwaalah", "ask-ai"].map((pid) => projFolder(byId(pid), pid === "design-system" ? dsFiles : [])) },
       { id: "artworks", name: "Artworks", kind: "folder", color: "#ff375f", icon: "artwork", children: artworkFiles },
       { id: "assignments", name: "Assignments", kind: "folder", color: "#ff9f0a", icon: "assignments", children: assignmentFiles },
       { id: "ai-products", name: "AI Products", kind: "folder", color: "#bf5af2", icon: "ai", children: [projFolder(byId("ask-ai")), agentAi] },

@@ -20,8 +20,6 @@ const FOCUS = "Design Systems • AI Products • SaaS";
 
 const EMAIL = "yusufzaiobaid@gmail.com";
 const PHONE = "+91 9131100031";
-const NAUKRI = "https://www.naukri.com";
-
 const BLUE = "#0a84ff";
 const SECONDARY = "#98989d";
 
@@ -130,7 +128,7 @@ export default function ContactCardApp() {
                 <AppArt id="resume" />
               </SqTile>
               <SqTile label="LinkedIn" bg="#0a66c2" onClick={() => open(PROFILE.linkedin)}><GlyphIn /></SqTile>
-              <SqTile label="Naukri" bg="#3359e5" onClick={() => open(NAUKRI)}>
+              <SqTile label="Naukri" bg="#3359e5" onClick={() => open(PROFILE.naukri)}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src={asset("/icons/naukri-glyph.png")} alt="" className="h-[62%] w-auto object-contain" draggable={false} />
               </SqTile>

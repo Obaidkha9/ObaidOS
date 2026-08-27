@@ -11,7 +11,8 @@ export const PROFILE = {
   tagline: "Designing calm, precise interfaces — and building them too.",
   location: "India",
   email: "yusufzaiobaid@gmail.com",
-  linkedin: "https://www.linkedin.com/",
+  linkedin: "https://www.linkedin.com/in/obaidyusufzai/",
+  naukri: "https://www.naukri.com/mnjuser/profile?id=&altresid",
   behance: "https://www.behance.net/",
 };
 

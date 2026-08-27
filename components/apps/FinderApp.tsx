@@ -267,7 +267,7 @@ function useTree(): Record<Section, Node[]> {
         },
       },
       { id: "ct-li", name: "LinkedIn.url", kind: "link", ext: "url", href: PROFILE.linkedin },
-      { id: "ct-naukri", name: "Naukri.url", kind: "link", ext: "url", href: "https://www.naukri.com" },
+      { id: "ct-naukri", name: "Naukri.url", kind: "link", ext: "url", href: PROFILE.naukri },
     ];
 
     const about: Node[] = [

@@ -72,7 +72,47 @@ const USERS = [
   },
 ];
 
-const FLOW = ["Open app", "View goal", "Start session", "Complete", "Earn reward", "Track progress", "Return tomorrow"];
+type FlowIconName = "app" | "goal" | "start" | "complete" | "reward" | "progress" | "tomorrow";
+
+const FLOW: { label: string; icon: FlowIconName }[] = [
+  { label: "Open app", icon: "app" },
+  { label: "View goal", icon: "goal" },
+  { label: "Start session", icon: "start" },
+  { label: "Complete", icon: "complete" },
+  { label: "Earn reward", icon: "reward" },
+  { label: "Track progress", icon: "progress" },
+  { label: "Return tomorrow", icon: "tomorrow" },
+];
+
+function FlowIcon({ name }: { name: FlowIconName }) {
+  const commonProps = {
+    className: "h-[18px] w-[18px]",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: 1.8,
+    strokeLinecap: "round" as const,
+    strokeLinejoin: "round" as const,
+    "aria-hidden": true,
+  };
+
+  switch (name) {
+    case "app":
+      return <svg {...commonProps}><rect x="3" y="4" width="18" height="16" rx="3" /><path d="M3 9h18" /><path d="M7 6.5h.01M10 6.5h.01" /></svg>;
+    case "goal":
+      return <svg {...commonProps}><circle cx="12" cy="12" r="8.5" /><circle cx="12" cy="12" r="4.5" /><circle cx="12" cy="12" r="1" /></svg>;
+    case "start":
+      return <svg {...commonProps}><circle cx="12" cy="12" r="9" /><path d="m10 8 6 4-6 4Z" /></svg>;
+    case "complete":
+      return <svg {...commonProps}><circle cx="12" cy="12" r="9" /><path d="m8 12 2.6 2.6L16.5 9" /></svg>;
+    case "reward":
+      return <svg {...commonProps}><path d="M8 4h8v4.5a4 4 0 0 1-8 0Z" /><path d="M8 6H5.5v1.5A3.5 3.5 0 0 0 9 11M16 6h2.5v1.5A3.5 3.5 0 0 1 15 11M12 12.5V17M8.5 20h7M10 17h4" /></svg>;
+    case "progress":
+      return <svg {...commonProps}><path d="M4 19V5M4 19h16" /><path d="m7 15 4-4 3 2 5-6" /><path d="M16 7h3v3" /></svg>;
+    case "tomorrow":
+      return <svg {...commonProps}><rect x="3.5" y="5" width="17" height="15" rx="2.5" /><path d="M8 3v4M16 3v4M3.5 9h17" /><path d="M9 14h6M13 12l2 2-2 2" /></svg>;
+  }
+}
 
 const AREAS = [
   ["Home", "Daily overview"],
@@ -267,11 +307,11 @@ export default function FocusForgeCaseStudy(_props: { onBack: () => void }) {
           <Reveal><h2 className="text-[34px] font-bold sm:text-[46px]">The primary loop—intentionally simple</h2></Reveal>
           <p className="mt-3 max-w-2xl text-[16px] leading-relaxed" style={{ color: SUB }}>Seven steps form the core habit engine. Every design decision serves this loop.</p>
           <div className="mt-10 grid grid-cols-2 gap-3 sm:grid-cols-4 lg:grid-cols-7">
-            {FLOW.map((step, i) => (
-              <Reveal key={step} delay={i * 0.05}>
+            {FLOW.map(({ label, icon }, i) => (
+              <Reveal key={label} delay={i * 0.05}>
                 <div className="relative flex h-full min-h-28 flex-col items-center justify-center rounded-2xl p-4 text-center" style={{ background: SURF, border: `1px solid ${BORD}` }}>
-                  <span className="mb-3 flex h-8 w-8 items-center justify-center rounded-xl text-[12px] font-black" style={{ background: "rgba(98,88,246,0.16)", color: PURPLE_2 }}>{i + 1}</span>
-                  <span className="text-[12px] font-semibold">{step}</span>
+                  <span className="mb-3 flex h-8 w-8 items-center justify-center rounded-xl" style={{ background: "rgba(98,88,246,0.16)", color: PURPLE_2 }}><FlowIcon name={icon} /></span>
+                  <span className="text-[12px] font-semibold">{label}</span>
                   {i < FLOW.length - 1 && <span className="absolute -right-2 top-1/2 hidden -translate-y-1/2 text-white/25 lg:block">→</span>}
                 </div>
               </Reveal>

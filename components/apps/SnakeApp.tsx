@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, type ReactNode } from "react";
 import type { AppProps } from "./AppChrome";
+import { asset } from "@/lib/asset";
 
 const SIZE = 15;
 type P = { x: number; y: number };
@@ -103,7 +104,13 @@ export default function SnakeApp(_: AppProps) {
         </div>
         {!running && (
           <button onClick={start} className="absolute inset-0 flex items-center justify-center rounded-2xl bg-black/60 text-base font-semibold text-white backdrop-blur-sm">
-            {over ? "Game Over · Play again" : "Tap to play ▸"}
+            {over ? (
+              <span className="flex w-full flex-col items-center justify-center gap-3">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={asset("/snake-game-over.webp")} alt="Monkey reacting to game over" className="h-auto w-[44%] max-w-[150px] rounded-xl object-contain" />
+                <span>Game Over · Play again</span>
+              </span>
+            ) : "Tap to play ▸"}
           </button>
         )}
       </div>

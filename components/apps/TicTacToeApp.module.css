@@ -1,0 +1,22 @@
+.game{height:100%;min-width:0;overflow:auto;display:flex;flex-direction:column;background:#0f0f10;color:white;padding:clamp(12px,4vw,24px);container-type:inline-size}
+.header{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;flex-shrink:0}
+.progress{display:flex;align-items:center;gap:6px;padding:4px 2px}
+.progress span{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.2)}
+.progress .progressActive{background:#ff9f0a}
+.stage{position:relative;display:flex;align-items:center;justify-content:center;flex:1;min-height:180px;margin-top:20px;container-type:size}
+.board{width:min(100cqw,100cqh,560px);aspect-ratio:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(6px,2.6cqw,10px);margin:auto}
+.cell{display:flex;align-items:center;justify-content:center;aspect-ratio:1;min-width:0;border-radius:16px;background:rgba(255,255,255,.04);box-shadow:0 0 0 1px rgba(255,255,255,.1);font-size:clamp(26px,12cqw,48px);font-weight:900;touch-action:manipulation;user-select:none;transition:background .18s}
+.cell:not(:disabled):hover{background:rgba(255,255,255,.07)}
+.winning{background:rgba(255,255,255,.15)}
+.result{width:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:10px 0}
+.resultImage{width:auto;height:min(360px,58cqh);max-width:72%;align-self:center;object-fit:contain;object-position:center;border-radius:10px;transform:translateY(10px);margin-bottom:16px}
+.resultSubtext{margin-top:-8px;text-align:center}
+.status{margin:12px 0 10px;min-height:20px;text-align:center;font-size:14px;font-weight:500;color:rgba(255,255,255,.7);flex-shrink:0}
+.buttons{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;flex-shrink:0}
+.buttons button{min-height:44px;padding:8px 18px;border-radius:999px;font-size:13px;font-weight:500;touch-action:manipulation}
+.secondary{background:rgba(255,255,255,.1);color:rgba(255,255,255,.8)}
+.primary{background:#ff9f0a;color:#0f0f10}
+.buttons button:focus-visible,.cell:focus-visible{outline:2px solid #ff9f0a;outline-offset:3px}
+.confetti{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.confetti span{position:absolute;width:5px;height:8px;border-radius:1px}
+@media(max-height:500px){.stage{min-height:152px;margin-top:12px}.board{max-width:180px}.resultImage{height:105px;max-width:72%;transform:translateY(5px);margin-bottom:10px}.result{gap:6px;padding:0}.resultSubtext{margin-top:-5px}.status{margin:6px 0}.game{padding:12px}}

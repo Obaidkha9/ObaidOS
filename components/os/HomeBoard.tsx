@@ -206,10 +206,7 @@ export default function HomeBoard() {
 
           {/* about me — 1 row × 1 col (equal to clock), full-width orange header */}
           <Panel i={1} onClick={open("about", { context: "About Obaid" })} className="flex aspect-square flex-col bg-[#2d2d33]/85 backdrop-blur-md">
-            <div className="flex items-center gap-2 bg-[#ff9f0a] px-3 py-2">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" aria-hidden>
-                <path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8z" />
-              </svg>
+            <div className="flex items-center bg-[#ff9f0a] px-3 py-2">
               <span className="text-xs font-bold text-white">About Me</span>
             </div>
             <div className="flex flex-1 flex-col p-3.5">

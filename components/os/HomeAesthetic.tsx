@@ -631,10 +631,7 @@ export default function HomeAesthetic() {
 
       {/* about me — full-width orange header (opens Finder → About section) */}
       <Tile area="abt" i={1} onClick={open("finder", { context: "About Obaid", payload: "about" })} className="flex flex-col bg-[#2d2d33]/94 backdrop-blur-xl">
-        <div className="flex items-center gap-2 bg-[#ff9f0a] px-3.5 py-2.5">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="#fff" aria-hidden>
-            <path d="M10 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-8z" />
-          </svg>
+        <div className="flex items-center bg-[#ff9f0a] px-3.5 py-2.5">
           <span className="text-xs font-bold text-white">About Me</span>
         </div>
         <div className="flex flex-1 flex-col p-4">
